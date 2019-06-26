@@ -1,0 +1,82 @@
+/* ADDONS */
+.vis {
+	border-width: 0px;
+	transform-origin: top left;
+	display: block;
+	wwidth: 100%;
+	hheight: 100%;
+}
+
+/* RADAR */
+#sec-fragility .vis-container {
+  padding: 20px 0px 00px 0px;
+}
+
+#sec-fragility .ui-controls {
+	transform: translateY(-3vh);
+}
+
+.grid-title {
+	text-align: center;
+}
+
+.vis-star {
+    border-radius: 5px;
+}
+
+#grid-outer h5 {
+	text-align: center;
+}
+
+#grid-outer .grid-vis {
+	height: 60vh;
+}
+
+#grid-inner .grid-vis {
+	height: 30vh;
+}
+
+#grid-inner .grid-item  {
+	transition:opacity .2s linear;
+}
+
+#fsi-biginfo, #fsi-litinfo {
+    border-top: 2px solid black;
+    transform: translateY(-5vh);
+  text-align:left;
+}
+
+#sec-fragility #grid-outer {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-gap: 10px;
+}
+
+#sec-fragility #grid-outer #vis-big {
+  display: inline-grid;
+}
+
+#sec-fragility #grid-inner {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+}
+
+#sec-fragility .legend.right {
+	font-size: 2rem;
+}
+
+#fsi-star-year-bg {
+	grid-area: 1/1/5/6;
+	justify-self: center;
+	align-self: center;
+	opacity: .07;
+	font-size: 40vh;
+}
+
+#fsi-star-individual-bg {
+	grid-area: 1/1/5/6;
+	justify-self: center;
+	align-self: center;
+	transition:opacity .2s linear;
+}

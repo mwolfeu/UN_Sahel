@@ -198,7 +198,6 @@ function ACLED_init(errors, rows, reinit = false) {
 		violenceUpdate();
 	}
 	
-  console.log(reinit)
   if (reinit == true) return; // map redraw triggered
   
 	$("#violence-back").click(d=>{

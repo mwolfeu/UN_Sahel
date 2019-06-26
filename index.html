@@ -16,14 +16,14 @@
 	<link rel="stylesheet" type="text/css" href="libs/fullPage.js/examples/examples.css" />
 -->
   <link rel="stylesheet" type="text/css" href="css/main.css" />
-  <link rel="stylesheet" type="text/css" href="css/acled.css" />
+  <link rel="stylesheet" type="text/css" href="css/datamap.css" />
+  <link rel="stylesheet" type="text/css" href="css/radar.css" />
   
 </head>
 <body>
 
 <div id="fullpage">
   
-<!--
 	<div class="section " id="section0">
 		<video id="myVideo" muted data-autoplay>
 			<source src="img/intro_vid.m4v" type="video/mp4">
@@ -32,9 +32,10 @@
 			<h1>Sahel Fragility Demo</h1>
 		</div>
 	</div>
--->
+
   <div class="section" id="section0">
-    
+  
+  <ACLED />
 	<div class="part" id="sec-violent-entrepreneurs">
 		<h2>How has violence contributed to regional <span class="italic">fragility</span>?</h2>
 		<div class="chapeau">
@@ -75,7 +76,40 @@
 
   
 	<div class="section" id="section2">
-    <h1>Radar Chart</h1>
+    
+  <RADAR />  
+  <div id="sec-fragility" class="part">
+		<h2>How can you measure <span class="italic">fragility</span>?</h2>
+		<div class="chapeau">
+		Several indexes exist that try to comprehend and measure the plural dimensions of fragility. The Fragile States Index (FSI), composed of four meta-categories, is among the most used.
+		</div>
+		
+			
+		<div id="grid-outer" class="grid-container">
+			
+			<div id="vis-big" class="grid-item grid-vis"></div>
+			
+			<div id="grid-inner" class="grid-container">
+				
+				<!-- https://www.joomlashack.com/blog/tutorials/layering-items-within-css-grid/-->
+				<div id="fsi-star-year-bg"></div>
+				<canvas id="fsi-star-individual-bg" class="hidden"></canvas>
+
+			</div>
+			
+			
+		</div>
+
+		<center>
+			<div>
+        <img id="star-back" class="ui-controls" src="img/angle-left-solid.svg">
+        <img id="star-ctrl" class="ui-controls" src="img/play-circle-solid.svg">
+        <img id="star-frwd" class="ui-controls" src="img/angle-right-solid.svg">
+      <div id="ds-src" class="ds-srcs">Source: FSI</div>
+			</div>
+		</center>
+  </div>
+    
   </div>
 
 	<div class="section" id="section3">
@@ -95,10 +129,14 @@
 <script src="lib/topojson.js"></script>
 <script src="lib/datamaps.world.js"></script>
 
+<script src="lib/Chart.bundle.min.js"></script>
+<script src="lib/chartjs-plugin-colorschemes.min.js"></script>
+<script src="lib/chartjs-plugin-annotation.min.js"></script>
+
 <script type="text/javascript">
     var myFullpage = new fullpage('#fullpage', {
         verticalCentered: true,
-        sectionsColor: ['#fafafa', '#fafafa', '#fafafa', '#fafafa ']
+        sectionsColor: ['#fafafa', '#fafafa', '#fafafa', '#333333']
     });
 </script>
 
@@ -106,7 +144,10 @@
   <script src="js/fsi_star.js"></script>
 -->
   <script src="js/utils.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/addons.js"></script>
   <script src="js/acled.js"></script>
+  <script src="js/fsi_star.js"></script>
 	<script src="js/datasets.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/acled.js"></script>

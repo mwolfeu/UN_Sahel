@@ -74,6 +74,11 @@ video::-webkit-media-controls {
 }
 
 /* GENERAL */
+.hidden {
+	opacity: 0;
+	z-index: -5;
+}
+
 .part {
   margin: 0% 5% 0% 5%;
   font-family: 'PT Sans', sans-serif;

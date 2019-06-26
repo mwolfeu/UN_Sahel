@@ -20,10 +20,10 @@ var dsImportList = {				// list of all indicators
     exceptions:Object.fromEntries(ds.ACLEDcols.map(d => [d, Number])),
     initFcn: ACLED_init
   },
-  //~ "FSI/fsi_sahel_allYears.csv":{											
-    //~ exceptions:Object.fromEntries(ds.FSIcols.map(d => [d, Number])),
-    //~ initFcn: FSI_init
-  //~ },
+  "FSI/fsi_sahel_allYears.csv":{											
+    exceptions:Object.fromEntries(ds.FSIcols.map(d => [d, Number])),
+    initFcn: FSI_init
+  },
   //~ "UNSDG/UNSDG.csv":{											
     //~ exceptions:Object.fromEntries(ds.UNSDGcols.map(d => [d, Number])),
     //~ initFcn: UNSDG_init
