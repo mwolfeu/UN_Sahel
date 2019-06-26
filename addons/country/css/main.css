@@ -1,0 +1,27 @@
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+				url('../fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+}
+
+body {
+    overflow: hidden;
+}
+
+svg {
+    transform: translateY(-130px);
+    height: 610px;
+}
+
+svg path {
+	stroke-width: 3px;
+}
+
+#yr-disp, #yr-back, #yr-frwd, #label-gambia {
+	stroke: #cfd0d2;
+	fill: #cfd0d2;
+	cursor: pointer;
+}

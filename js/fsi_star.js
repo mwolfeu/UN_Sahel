@@ -170,7 +170,7 @@ function FSI_init(errors, rows) {
 	if (location.hostname === "localhost") proto = "http"; // for local python server
 	
 	// inject big from template
-	var bigFrame = `<h5 id="vis-big-title" ></h5>	<iframe id="vis-ifs-lvl0-big" class="vis vis-star" src="${proto}:/thesis/Sahel/addons/star/" onload="fsi_star_cb(this,false)"></iframe>`
+	var bigFrame = `<h5 id="vis-big-title" ></h5>	<iframe id="vis-ifs-lvl0-big" class="vis vis-star" src="${proto}:/UN_Sahel/addons/star/" onload="fsi_star_cb(this,false)"></iframe>`
 	$(`#sec-fragility #vis-big`).append(bigFrame);
 	
   // create iframes programatically https://stackoverflow.com/questions/3142837/capture-iframe-load-complete-event
@@ -180,7 +180,7 @@ function FSI_init(errors, rows) {
 				var row = parseInt(i/5);
 				var col = (i%5)+1;
 				var title = `<div class="grid-item grid-title" style="grid-area:${row?3:1}/${col};"><h5>${d}</h5><h6 data-name="${d}">Rank:</h6></div>`;
-				var iframe = `<div class="grid-item grid-vis" style="grid-area:${row?4:2}/${col};"> <iframe id="vis-ifs-lvl0-${d}" class="vis vis-star" src="${proto}:/thesis/Sahel/addons/star/" data-name="${d}" onload="fsi_star_cb(this,true)"></iframe> </div>`
+				var iframe = `<div class="grid-item grid-vis" style="grid-area:${row?4:2}/${col};"> <iframe id="vis-ifs-lvl0-${d}" class="vis vis-star" src="${proto}:/UN_Sahel/addons/star/" data-name="${d}" onload="fsi_star_cb(this,true)"></iframe> </div>`
 				
 				var idx = parseInt(i/5); 
 				$(`#grid-inner #fsi-title-${idx}`).append(title);

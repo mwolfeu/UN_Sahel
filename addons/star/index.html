@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+
+<!--
+taken from https://github.com/alangrafu/radar-chart-d3
+-->
+
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="css/pure-min.css" data-mw-ver="0.5.0">
+<link rel="stylesheet" href="css/radar-chart.css">
+
+<style>
+html {
+	overflow: hidden;
+}	
+
+.legend {
+	font-size: 1.2rem !important;
+}
+
+.legend:hover {
+	opacity: .8;
+  text-decoration: underline;
+}
+
+	
+body {
+  padding: 0px;
+  margin: 0px;
+  width: 400px;
+  height: 400px
+}
+</style>
+
+<style>
+.radar-chart .area {
+  fill-opacity: 0.5;
+}
+.radar-chart.focus .area {
+  fill-opacity: 0.3;
+}
+.radar-chart.focus .area.focused {
+  fill-opacity: 0.9;
+}
+.area.germany, .germany .circle {
+  fill: #FFD700;
+  stroke: none;
+}
+.area.chad, .chad .circle {
+  fill: #ADD8E6;
+  stroke: rgb(0,0,0,77);
+}
+
+.circle {
+	opacity: .5;
+}
+</style>
+
+<script src="lib/d3.v3.js"></script>
+<script src="lib/radar-chart.js"></script>
+
+<script>
+RadarChart.defaultConfig.color = function() {return "#ff0055"};
+RadarChart.defaultConfig.radius = 3;
+RadarChart.defaultConfig.w = 400;
+RadarChart.defaultConfig.h = 400;
+</script>
+
+<span></span>
+
+<script>
+var data = [];
+
+var chart = RadarChart.chart();
+var cfg = chart.config(); // retrieve default config
+var svg = d3.select('body').append('svg')
+  .attr('width', cfg.w)
+  .attr('height', cfg.h);
+
+// mw
+var mw = {}
+mw.mouseoverFcn = function(d) {console.log(d3.select(this).html())}
+mw.mouseoutFcn = function(d) {}
+
+
+//chart.config({w: cfg.w / 4, h: cfg.h / 4, axisText: false, levels: 0, circles: false});
+// chart.config({factor: .85});
+
+// cfg = chart.config();
+
+function render() {
+  var star = svg.selectAll('g.star').data(
+    [data]
+  );
+  star.enter().append('g').classed('star', 1);
+  star
+    .call(chart);
+    
+  d3.selectAll(".axis line").attr("stroke-dasharray", "5,5");
+  d3.selectAll(".axis line").style("stroke-width", "3px");  
+	d3.selectAll(".legend").on("mouseover", mw.mouseoverFcn); 
+	d3.selectAll(".legend").on("mouseout", mw.mouseoutFcn);
+	
+}
+
+
+</script>
