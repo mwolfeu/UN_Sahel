@@ -5,35 +5,74 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Sahel Fragility Demo</title>
 	<meta name="author" content="Alvaro Trigo Lopez" />
-    <meta name="description" content="Sahel Fragility Demo" />
-    <meta name="keywords"  content="sahel narrative visualization" />
+  <meta name="description" content="Sahel Fragility Demo" />
+  <meta name="keywords"  content="sahel narrative visualization" />
 	<meta name="Resource-type" content="Document" />
 
-
-	<link rel="stylesheet" type="text/css" href="libs/fullPage.js/dist/fullpage.css" />
+  
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="lib/fullPage.js/dist/fullpage.css" />
 <!--
 	<link rel="stylesheet" type="text/css" href="libs/fullPage.js/examples/examples.css" />
 -->
   <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <link rel="stylesheet" type="text/css" href="css/acled.css" />
   
 </head>
 <body>
 
 <div id="fullpage">
   
+<!--
 	<div class="section " id="section0">
 		<video id="myVideo" muted data-autoplay>
-			<source src="assets/intro_vid.m4v" type="video/mp4">
+			<source src="img/intro_vid.m4v" type="video/mp4">
 		</video>
 		<div class="layer">
 			<h1>Sahel Fragility Demo</h1>
 		</div>
 	</div>
-  
-	<div class="section" id="section1">
-    <h1>ACLED</h1>
+-->
+  <div class="section" id="section0">
     
+	<div class="part" id="sec-violent-entrepreneurs">
+		<h2>How has violence contributed to regional <span class="italic">fragility</span>?</h2>
+		<div class="chapeau">
+		After the fall of Libya, black markets were rife with arms and drugs.  The coup in Mali further opened the trade route for illicit goods into the Sahel which further destabilized the region.	 	
+		</div>
+
+    <div class="vis-container">
+			<div id="ds-src" class="ds-srcs">Source: ACLED</div>
+			<div id="violence-date">Loading...</div>
+			<div id="violence-map" style="border:1px dotted blue; width: 700px; height: 60vh; position: relative;"></div>
+			
+			<div id="mapLegend3" >Circle radius increases with event fatalities</div>
+			<div id="mapLegend0" class="map-legend">
+				<div id="top">
+					<div>Events Per Month (Squared)</div>
+					<img src="img/viridis.png">
+				</div>
+				<div><div id="min">1</div><div id="max">169</div></div>
+			</div>
+
+			<div id="mapLegend1" class="map-legend">
+				<div id="top">
+					<div>Actor Fatality Sum (Squared)</div>
+					<img src="img/redgradient.png">
+				</div>
+				<div><div id="min">0</div><div id="max">13K</div></div>
+			</div>
+			
+			<div id="violence-controls">
+				<img id="violence-back" class="ui-controls" src="img/angle-left-solid.svg">
+				<img id="violence-ctrl" class="ui-controls" src="img/play-circle-solid.svg">
+				<img id="violence-frwd" class="ui-controls" src="img/angle-right-solid.svg">
+			</div>
+		</div>
 	</div>
+  
+  </div>
+
   
 	<div class="section" id="section2">
     <h1>Radar Chart</h1>
@@ -45,15 +84,31 @@
 
 </div>
 
-<script type="text/javascript" src="libs/fullPage.js/dist/fullpage.js"></script>
+<script type="text/javascript" src="lib/fullPage.js/dist/fullpage.js"></script>
+<!--
 <script type="text/javascript" src="libs/fullPage.js/examples/examples.js"></script>
+-->
+<script src="lib/jquery-3.3.1.min.js"></script>
+<script src="lib/d3.v3.min.js"></script>
+<script> d3v3 = d3; window.d3 = null; </script>
+<script src="lib/d3.v4.min.js"></script>
+<script src="lib/topojson.js"></script>
+<script src="lib/datamaps.world.js"></script>
 
 <script type="text/javascript">
     var myFullpage = new fullpage('#fullpage', {
         verticalCentered: true,
-        sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#4BBFC3']
+        sectionsColor: ['#fafafa', '#fafafa', '#fafafa', '#fafafa ']
     });
 </script>
 
+<!--
+  <script src="js/fsi_star.js"></script>
+-->
+  <script src="js/utils.js"></script>
+  <script src="js/acled.js"></script>
+	<script src="js/datasets.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/acled.js"></script>
 </body>
 </html>
