@@ -1,0 +1,67 @@
+#sec-violent-entrepreneurs #mapLegend0  {    
+	transform: translate(6vh,-18vh);
+}
+
+#sec-violent-entrepreneurs #mapLegend1  {
+	transform: translate(6vh,-11vh);
+}
+
+#sec-violent-entrepreneurs #mapLegend3  {
+    -webkit-transform-origin-x: center;
+    position: absolute;
+    bottom: 12vh;
+    right: 6vw  ;
+}
+
+#sec-violent-entrepreneurs .map-legend #top{
+	font-family: Open Sans;
+	display: flex;
+	flex-direction: column;
+  align-items: center;
+  align-self: flex-end;
+}
+
+#sec-violent-entrepreneurs .map-legend, #sec-violent-entrepreneurs .map-legend img {
+	width: 20vw;
+	height: 10px;
+	
+  max-width: 150px;
+}
+
+#sec-violent-entrepreneurs .map-legend #min {
+	float:left;
+}
+
+#sec-violent-entrepreneurs .map-legend #max {
+	float:right;
+}
+
+#sec-violent-entrepreneurs .vis-container {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+#violence-date {
+	font-family: Open Sans;
+  font-size: 1.6rem;
+  transform: translateY(3rem);
+	z-index: 2;
+}
+
+#violence-date, #violence-map, #violence-controls {
+	margin: auto;
+}
+
+#violence-map {
+	border: 0px !important;
+	padding-bottom: 0px !important;
+	ooverflow: hidden;
+	width: 85vw !important;
+}
+
+.datamap {
+    width: 85vw !important;
+    background-color: transparent;
+    transform: translateX(-41vw);
+}
