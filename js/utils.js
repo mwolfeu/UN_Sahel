@@ -40,3 +40,14 @@ function range(start, end) {
 	return Array.from({length: end-start+1}, (v, k) => k+offset);
 }
 
+// for dereferencing d3 nested objects when any property < n could == undefined
+// returns value or undefined when property does not exist
+function dRef(o, p) {
+  var obj = o;
+  p.forEach(d => {
+    if (obj == undefined) 
+      return;
+    obj = obj[d];
+    });
+  return obj;
+}

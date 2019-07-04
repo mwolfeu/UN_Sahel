@@ -1,4 +1,5 @@
 // TODO
+
 // SAHEL Countries:  Burkina Faso, Cameroon, Chad,The Gambia, Guinea, Mali, Mauritania, Niger, Nigeria and Senegal
 
 var ds = new dataset;
@@ -16,18 +17,18 @@ var ds = {
 // each dataset is preprocessed to contain a country,year col and only the desired indicators
 // exceptions values can be Number for default number conversion or bespoke function
 var dsImportList = {				// list of all indicators
-  "ACLED/acled_sahel_gt2007.csv":{											
-    exceptions:Object.fromEntries(ds.ACLEDcols.map(d => [d, Number])),
-    initFcn: ACLED_init
-  },
-  "FSI/fsi_sahel_allYears.csv":{											
-    exceptions:Object.fromEntries(ds.FSIcols.map(d => [d, Number])),
-    initFcn: FSI_init
-  },
-  //~ "UNSDG/UNSDG.csv":{											
-    //~ exceptions:Object.fromEntries(ds.UNSDGcols.map(d => [d, Number])),
-    //~ initFcn: UNSDG_init
-  //~ }
+  //~ "ACLED/acled_sahel_gt2007.csv":{											
+    //~ exceptions:Object.fromEntries(ds.ACLEDcols.map(d => [d, Number])),
+    //~ initFcn: ACLED_init
+  //~ },
+  //~ "FSI/fsi_sahel_allYears.csv":{											
+    //~ exceptions:Object.fromEntries(ds.FSIcols.map(d => [d, Number])),
+    //~ initFcn: FSI_init
+  //~ },
+  "UNSDG/UNSDG_NEW.csv":{											
+    exceptions:Object.fromEntries(ds.UNSDGcols.map(d => [d, Number])),
+    initFcn: UNSDG_init
+  }
 };
 
 //////////
