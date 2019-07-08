@@ -236,6 +236,7 @@ function ACLED_init(errors, rows, reinit = false) {
   //~ $( window ).resize(function() {
 			//~ ACLED.map.resize();
 	//~ });
+  
   $(window).on('resize', function(e) {
     // DUMB!  DATAMAP Projector can't resize! 
     $("#violence-map > svg").remove()

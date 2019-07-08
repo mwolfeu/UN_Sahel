@@ -123,7 +123,64 @@
       </div>
     </div>
     
-    <div id="missing-overview" class="missing-screen">    
+    <style type="text/css">
+    .draggable { 
+      background: #fff; 
+      ppadding-bottom: 20px; 
+      ppadding-top: 20px; 
+      ppadding-right: 0px; 
+      ppadding-left: 0px; 
+      cursor: move;
+      border: #000 1px solid;
+      text-align: center;
+      font-weight: bold
+      width: fit-content;
+      display: inline-block;
+      padding: 0px 5px;
+      margin: 0px 3px;
+      border-radius: 5px;
+    }
+    .droppable { 
+      width: fit-content;
+      display: inline;
+    }
+    
+    .switch {
+      width: 1rem;
+    }
+    </style>
+    
+    <div id="missing-viewer">    
+      <div id="missing-wrapper">
+        <div class="missing-title">View By: 
+        
+          <div id="dnd-outer" class="droppable">
+<!--
+            <div id="test1" class="draggable">Goal</div>
+            <div id="SeriesCode" class="draggable">Indicator</div>
+            <div id="div3" class="draggable">Country</div>
+            <div id="div3" class="draggable">Year</div>
+-->
+          <img id="sdgHelp" src="img/question-circle-regular.svg">
+          </div>
+          
+        </div>
+<!--
+        <div id="grids-wrapper"></div>
+-->
+        <div id="grid-wrapper">
+          <div id="grid-missing" class="grid-container"></div>
+        </div>     
+<!--
+      </div> 
+-->
+    </div>
+    
+
+
+    
+<!--
+    <div id="missing-overview" class="missing-screen" style="display: none;">    
       <div id="missing-wrapper">
         <div class="missing-title">Overview</div>
         <div id="grid-wrapper">
@@ -141,6 +198,7 @@
         </div>     
       </div>
     </div>
+-->
     
     
   </div>
@@ -151,10 +209,15 @@
 <!--
 <script type="text/javascript" src="libs/fullPage.js/examples/examples.js"></script>
 -->
+
 <script src="lib/jquery-3.3.1.min.js"></script>
-<!--
 <script src="lib/jquery-ui-1.12.1.min.js"></script>
 <link rel="stylesheet" href="css/jquery-ui-themes-1.12.1/jquery-ui.min.css">
+
+<!--
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 -->
 
 <script src="lib/d3.v3.min.js"></script>

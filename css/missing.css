@@ -1,3 +1,12 @@
+.dim {
+  opacity: .6;
+}
+
+#sdgHelp {
+  height: 1.6rem;
+  float: right;
+}
+
 #grid-wrapper {
   display: flex;
   flex-direction: column;
@@ -34,7 +43,6 @@
 
 .grid-unsdg-item #gHeader {
   text-align: center;
-  font-weight: bold;
   display: flex;
   align-items: center;
 }
@@ -95,7 +103,7 @@
   margin: auto;
   font-size: 1.4rem;
   font-weight: bold;
-  border-bottom: 1px solid black;
+  bborder-bottom: 1px solid black;
 }
 
 /* BARS */
@@ -143,27 +151,27 @@
   text-align: left;
 }
 
-/* tabs */
-/*
-#tabs {
-    background-color: #fafafa;
-    height: 70vh;
+/* SORTABLE */
+
+#grid-missing {
+  display: grid;
+  grid-template-columns: repeat(4, 25vw);
+  grid-gap: 1vw;
+  overflow: overlay;
+  height: 70vh;
+  width: 90vw;
+  justify-content: center;
 }
 
-.ui-widget.ui-widget-content {
-    border: 0px !important;
+sec-fragility  .grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 25vw);
+  grid-gap: 1vw;
+  overflow: overlay;
+  height: 70vh;
+  width: 90vw;
+  justify-content: center;
 }
-
-.ui-tabs .ui-tabs-nav {
-    margin: auto !important;
-    width: 90vw !important;
-}
-
-.ui-widget-header {
-    border: none !important;
-    background: transparent !important;
-}
-*/
 
 /* SCROLLBAR */
 ::-webkit-scrollbar {
