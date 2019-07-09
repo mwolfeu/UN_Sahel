@@ -1,5 +1,7 @@
 var UNSDG = {
-  tipData: {}
+  tipData: {},
+  filterRangeMin:0,
+  filterRangeMax:0
 };
 
 var goalNames = [
@@ -27,13 +29,17 @@ function inputSanitize(s) {
   
 function inputChange(e, init=false) {
   var keyObj = UNSDG.keysByKey[e][0];
-  if (!init) keyObj.filter = $("input[data-key={}]".format(e)).val(); // TODO rm spaces beg,end, and   around |
+  if (!init) keyObj.filter = $("input[data-key={}]".format(e)).val(); 
+  
+  var r = '';
+  if (e == "TimePeriod" && UNSDG.filterRangeMin && UNSDG.filterRangeMax) // if both aren't 0 
+    r = ' ' + range(UNSDG.filterRangeMin, UNSDG.filterRangeMax).join(' ');
   
   keyObj.keyVals = keyObj.allVals.filter(d => {
-    if (keyObj.filter == "") return true;
+    if (keyObj.filter == "" && r == "") return true;
     // var filters = keys[i].filter.split(',');
     //if (new RegExp(filters.join("|")).test(d)) {
-    if (new RegExp(inputSanitize(keyObj.filter)).test(d)) // run filter
+    if (new RegExp(inputSanitize(keyObj.filter + r)).test(d)) // run filter
       return true;
     return false;
     }); // all filtered values in dataset for key 
@@ -41,6 +47,11 @@ function inputChange(e, init=false) {
   keyObj.qty = keyObj.keyVals.length;
   
   $("#nfi-" + e).html(keyObj.qty);
+}
+
+function yearChange(val) {
+  UNSDG["filterRange" + val] = parseInt($('select#s' + val).val());
+  inputChange('TimePeriod');
 }
 
 function UNSDG_init (errors, rows) {
@@ -56,33 +67,16 @@ function UNSDG_init (errors, rows) {
   keysByKey = d3.nest().key(k=>k.key).object(keys); // org by key
   UNSDG.keysByKey = keysByKey;
   
-  //~ function kkeyFilter(e) {  // was used with popup event | now just for 
-    //~ if (typeof(e) == "number") {
-      //~ var keyObj = keys[e];
-    //~ } else {
-      //~ var key = $(e.popper).find("input").data("key");
-      //~ var keyObj = keysByKey[key][0];
-      //~ keyObj.filter = $(e.popper).find("input").val(); // TODO rm spaces beg,end, and   around |
-    //~ }
-    
-    //~ keyObj.keyVals = keyObj.allVals.filter(d => {
-    //~ if (keyObj.filter == "") return true;
-    //~ // var filters = keys[i].filter.split(',');
-    //~ //if (new RegExp(filters.join("|")).test(d)) {
-    //~ if (new RegExp(keyObj.filter).test(d)) // make em use |  
-      //~ return true;
-    //~ return false;
-    //~ }); // all filtered values in dataset for key 
-    //~ keyObj.qty = keyObj.keyVals.length;
-    //~ $("#nfi-" + keyObj.key).html(keyObj.qty);
-  //~ }
-  
   function onKeyTipShow (e) {
-    UNSDG.startKeyTip = $(e.popper).find("input").val();
+    UNSDG.startKeyTip = $(e.popper).find("input").val() 
+      + $(e.popper).find("select").eq(0).val()
+      + $(e.popper).find("select").eq(1).val();
   }
   
   function onKeyTipHide (e) {
-    curKeyTip = $(e.popper).find("input").val();
+    curKeyTip = $(e.popper).find("input").val() 
+      + $(e.popper).find("select").eq(0).val()
+      + $(e.popper).find("select").eq(1).val();
     if (curKeyTip != UNSDG.startKeyTip) mkItems();
   }
   
@@ -94,10 +88,18 @@ function UNSDG_init (errors, rows) {
       
       $("#dnd-outer").append('<div class="draggable {}" data-key="{}">{}</div>'.format(d.initState, d.key, d.label));
       
-      tTip = `<div style="margin:5px; text-align: left;">
+      var yOpts = range(1989, 2019).map(d=>d==1989?'<option value="0" selected>Choose</option>':`<option value="${d}">${d}</option>`).join('');
+
+      // <br>Year Range: <input type="number" value="" min="2" max="2018" id="sMin" onchange="yearChange('Min')"> - <input type="number" id="sMax" onchange="yearChange('Max')"></select>
+      var tTipYears = `
+      <br>Year Range: <select id="sMin" onchange="yearChange('Min')">${yOpts.replace("selected", "")}</select> - <select id="sMax" onchange="yearChange('Max')">${yOpts}</select>
+      `; 
+      
+      var tTip = `<div style="margin:5px; text-align: left;">
               Total Values: <span id='nfi-{key}' class'num-fltr-items'>{}</span><br>
               Search: <input type="text" onchange="inputChange('{key}')" onpaste="inputChange('{key}')" onkeyup="inputChange('{key}')" value="{}" data-key="{key}">
-              </div>`.format(d.qty, d.filter, {"key":d.key});
+              {}
+              </div>`.format(d.qty, d.filter, d.key=="TimePeriod"?tTipYears:"", {"key":d.key});
               
       tippy("#dnd-outer *[data-key={}]".format(d.key), {
             content: tTip,
