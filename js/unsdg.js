@@ -147,7 +147,7 @@ function UNSDG_init (errors, rows) {
     function slabView(e, min, max, arr) {
       c = d3v3.scale.linear().domain([min, max * .5 , max]).range(['#A50C29', '#F3F8A9', '#066C3B']); //RYG
       arr.forEach((d,i)=>{
-        e.append(`<div class="statusLine" style="background-color:${c(d)};"><div>`);
+        $(e).append(`<div class="statusLine" style="background-color:${c(d)};"><div>`);
         });
         
       var buckets = arr.map(d => {
@@ -165,7 +165,7 @@ function UNSDG_init (errors, rows) {
               <div>low Sparsity: {}</div>
               </div>`.format(arr.length, buckets.filter(d => d=="high").length, buckets.filter(d => d=="med").length, buckets.filter(d => d=="low").length);
       // make popup
-      tippy(e.selector, {
+      tippy(e, {
           content: tTip,
           animation: "shift-away",
           arrow: true,
@@ -222,9 +222,9 @@ function UNSDG_init (errors, rows) {
               // INDICATORS IS WRONG FOR THIS! 
               if (idx == 0) sIdx++; // done with one aggregation
               if (sIdx == qty) {
-                console.log('sums = ', sums);
+                // console.log('sums = ', sums);
                 var max = offKeys.map(d=>keysByKey[d][0].qty).reduce((p,v) => p*v)/keysByKey[offKeys[idx]][0].qty;
-                slabView($("#grid-unsdg-item-{} #meta-by-indicator".format(hash)), 0, max, sums);
+                slabView("#grid-unsdg-item-{} #meta-by-indicator".format(hash), 0, max, sums);
                 sums = new Array(sLen).fill(0);
                 sIdx = 0;
               }
@@ -290,7 +290,7 @@ function UNSDG_init (errors, rows) {
   <div style="display:inline;">  When selected, a key will be determine the quantity of items shown and their sort order.  </div>
   <div>  Ex: If both "country" and "year" are selected 300 items would be displayed (10 countries * 30 years) sorted first by country name and then by year. </div>
   <div style="font-weight:bold;display:inline;">  Deselected keys </div>
-  <div style="display:inline;">  The first deselected key will be represented as a color bar ranging through red, yellow, and green. For each line in the bar the aggregate sparsity of the deselected keys will be ranked.  Where red is high (>40) sparsity, yellow is medium (<40%) ssparsity, and green is low (<10%) sparsity. </div>
+  <div style="display:inline;">  The first deselected key will be represented as a color bar ranging through red, yellow, and green. For each line in the bar the aggregate sparsity of the deselected keys will be ranked.  Where red is high (>40) sparsity, yellow is medium (<40%) sparsity, and green is low (<10%) sparsity. </div>
   <div>  Ex: Deselecting "country" and "year" (in order) yields a bar containing one line per country whose color represents the sparsity of data for all years for that country. </div>
   <div style="font-weight:bold;display:inline;">  Filtering </div>
   <div style="display:inline;">  To filter the set of all keys, hover over the key name and type one or more filters into the search box separated by spaces.  The sum of values passing any of the filters will dynamically update. </div>
