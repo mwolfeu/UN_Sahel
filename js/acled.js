@@ -241,6 +241,8 @@ function ACLED_init(errors, rows, reinit = false) {
     // DUMB!  DATAMAP Projector can't resize! 
     $("#violence-map > svg").remove()
     ACLED_init(null, null, true)
+    myFullpage.moveSectionUp(); // section 3 bug
+    myFullpage.moveSectionDown();
   }, 500);
 }
 
