@@ -148,12 +148,14 @@ function UNSDG_init (errors, rows) {
     nData = nData.object(rows);
     
     // arr.len slabs of color (relative to min/max) injected into div element (e)
-    function slabView(hash, min, max, arr) {
+    function slabView(hash, min, max, arr, names) {
       var c = d3v3.scale.linear().domain([min, max * .5 , max]).range(['#A50C29', '#F3F8A9', '#066C3B']); //RYG
+      var s = d3v3.scale.linear().domain([min, max]).range([100, 0]); //Sparsity
+      
       //var lineWidth = (document.documentElement.clientWidth * .2) / arr.length;
       var htmlStr = '';
       arr.forEach((d,i)=>{
-        htmlStr += `<div class="statusLine" style="background-color:${c(d)};width:calc((90vw*.2)/${arr.length});"></div>`;
+        htmlStr += `<div class="statusLine" style="background-color:${c(d)};width:calc((90vw*.2)/${arr.length});" data-str="${names[i]}: ${maxSign(s(d),2)}% Sparse"></div>`;
         });
         
       var buckets = arr.map(d => {
@@ -228,7 +230,8 @@ function UNSDG_init (errors, rows) {
               if (sIdx == qty) {
                 // console.log('sums = ', sums);
                 var max = offKeys.map(d=>keysByKey[d][0].qty).reduce((p,v) => p*v)/keysByKey[offKeys[idx]][0].qty;
-                slabStr += slabView(hash, 0, max, sums);
+                var names = keysByKey[offKeys[0]][0].keyVals;
+                slabStr += slabView(hash, 0, max, sums, names);
                 sums.fill(0);
                 sIdx = 0;
               }
@@ -259,18 +262,18 @@ function UNSDG_init (errors, rows) {
     
     // X optimize drawing
     // X responsive bar
+    // X empty txt search bug - flipping through popups too fast
+    // X resize bug
+    // X responsive css grid params
+    // NOPE: take avg of all indicators you expanded (i.e. do avg and separated - use display hide/show)
+    
     // path tip / line tip
     
     // filter year range 
     // lowest to highest sorting
     
-    // X empty txt search bug - flipping through popups too fast
-    // X resize bug
+    // redo help
     
-    // fix help
-    // responsive css grid params
-    
-    // NOPE: take avg of all indicators you expanded (i.e. do avg and separated - use display hide/show)
     recursiveList(nData, 0);
     $('#grid-wrapper .grid-container').append(htmlStr);
     
@@ -293,6 +296,22 @@ function UNSDG_init (errors, rows) {
           arrow: true,
           inertia: true
         }); 
+        
+       UNSDG.tipData['tInst' + hash] = tippy($(d.currentTarget).find('#meta-by-indicator')[0], {
+          content: "hi",
+          //target: '#meta-by-indicator',   // TIPPY CANT DO TWO DIFFERENT TARGETS !
+          animation: "shift-away",
+          arrow: true,
+          inertia: true
+        });   
+        
+        $(d.currentTarget).find(".statusLine").on("mouseover", hash, d => {
+          
+          var data = $(d.currentTarget).data('str');
+          UNSDG.tipData['tInst' + d.data].setContent(data);
+          
+          });  
+            
       });
     
   }
