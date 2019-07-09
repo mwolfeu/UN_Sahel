@@ -11,8 +11,6 @@ var goalNames = [
   "Peace, justice and strong institutions", "Partnerships for the goals",
 ];
 
-function ttippy(x) {}
-
 function inputSanitize(s) { 
   // rm illegal chars, escape others
   // | -> ' '
@@ -51,8 +49,8 @@ function UNSDG_init (errors, rows) {
   
   var keys = [
     // {key:"Target", label:"Goal", accessor:d=>parseInt(d), initState:"", qty:0},
-    {key:"GeoAreaName", label:"Country", accessor:d=>d, initState:"", qty:0, filter:""},
-    {key:"TimePeriod", label:"Year", accessor:d=>d, initState:"dim", qty:0, filter:""},
+    {key:"TimePeriod", label:"Year", accessor:d=>d, initState:"", qty:0, filter:""},
+    {key:"GeoAreaName", label:"Country", accessor:d=>d, initState:"dim", qty:0, filter:""},
     {key:"SeriesCode", label:"Indicator", accessor:d=>d, initState:"dim", qty:0, filter:"-3. -4."} // d.split('-')[0]
   ];
   keysByKey = d3.nest().key(k=>k.key).object(keys); // org by key
@@ -107,6 +105,7 @@ function UNSDG_init (errors, rows) {
             animation: "shift-away",
             arrow: true,
             inertia: true,
+            duration: [500,0],
             onShow:onKeyTipShow,
             onHide:onKeyTipHide
           }); 
@@ -267,7 +266,7 @@ function UNSDG_init (errors, rows) {
     // X responsive css grid params
     // NOPE: take avg of all indicators you expanded (i.e. do avg and separated - use display hide/show)
     
-    // path tip / line tip
+    // X path tip / line tip
     
     // filter year range 
     // lowest to highest sorting
