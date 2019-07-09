@@ -51,7 +51,7 @@ function UNSDG_init (errors, rows) {
     // {key:"Target", label:"Goal", accessor:d=>parseInt(d), initState:"", qty:0},
     {key:"TimePeriod", label:"Year", accessor:d=>d, initState:"", qty:0, filter:""},
     {key:"GeoAreaName", label:"Country", accessor:d=>d, initState:"dim", qty:0, filter:""},
-    {key:"SeriesCode", label:"Indicator", accessor:d=>d, initState:"dim", qty:0, filter:"-3. -4."} // d.split('-')[0]
+    {key:"SeriesCode", label:"Indicator", accessor:d=>d, initState:"dim", qty:0, filter:"-3."} // d.split('-')[0]
   ];
   keysByKey = d3.nest().key(k=>k.key).object(keys); // org by key
   UNSDG.keysByKey = keysByKey;
