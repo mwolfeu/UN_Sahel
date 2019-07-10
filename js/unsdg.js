@@ -1,7 +1,8 @@
 var UNSDG = {
   tipData: {},
-  filterRangeMin:0,
-  filterRangeMax:0,
+  //filterRangeMin:0,
+  //filterRangeMax:0,
+  filterRangeChanged:false,
   rangeInited:false
 };
 
@@ -33,7 +34,7 @@ function inputChange(e, init=false) {
   if (!init) keyObj.filter = $("input[data-key={}]".format(e)).val(); 
   
   var r = '';
-  if (e == "TimePeriod" && UNSDG.filterRangeMin && UNSDG.filterRangeMax) // if both aren't 0 
+  if (e == "TimePeriod" && (UNSDG.filterRangeMin != 1990 || UNSDG.filterRangeMax != 2019)) // if both aren't at default
     r = ' ' + range(UNSDG.filterRangeMin, UNSDG.filterRangeMax).join(' ');
   
   keyObj.keyVals = keyObj.allVals.filter(d => {
@@ -75,27 +76,36 @@ function UNSDG_init (errors, rows) {
         min: 1990,
         max: 2019,
         values: [1990,2019],
+        change: function(event, ui) {
+          UNSDG["filterRangeChanged"] = true
+        },
         slide: function( event, ui ) {
           console.log(ui.values[0] + " - " + ui.values[1])
           //$( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
           $( "#amount" ).html( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+          UNSDG["filterRangeMin"] = ui.values[ 0 ];
+          UNSDG["filterRangeMax"] = ui.values[ 1 ];
+          inputChange('TimePeriod');
         }
       });
+      UNSDG["filterRangeMin"] = 1990;
+      UNSDG["filterRangeMax"] = 2019;
       UNSDG.rangeInited = true;
     }
   }
   
   function onKeyTipShow (e) {
     UNSDG.startKeyTip = $(e.popper).find("input").val() 
-      + $(e.popper).find("select").eq(0).val()
-      + $(e.popper).find("select").eq(1).val();
+      //~ + $(e.popper).find("select").eq(0).val()
+      //~ + $(e.popper).find("select").eq(1).val();
   }
   
   function onKeyTipHide (e) {
     curKeyTip = $(e.popper).find("input").val() 
-      + $(e.popper).find("select").eq(0).val()
-      + $(e.popper).find("select").eq(1).val();
-    if (curKeyTip != UNSDG.startKeyTip) mkItems();
+      //~ + $(e.popper).find("select").eq(0).val()
+      //~ + $(e.popper).find("select").eq(1).val();
+    if (curKeyTip != UNSDG.startKeyTip || UNSDG.filterRangeChanged == true) mkItems();
+    UNSDG.filterRangeChanged = false;
   }
   
   function initFilter() {
@@ -111,9 +121,9 @@ function UNSDG_init (errors, rows) {
       // <br>Year Range: <input type="number" value="" min="2" max="2018" id="sMin" onchange="yearChange('Min')"> - <input type="number" id="sMax" onchange="yearChange('Max')"></select>
       var tTipYears = `
       <br> <label for="amount">Year Range: </label> <span id="amount">1990 - 2019</span > <div id="slider-range" style="margin:5px"></div>
-      <br>Year Range: <select id="sMin" onchange="yearChange('Min')">${yOpts.replace("selected", "")}</select> - <select id="sMax" onchange="yearChange('Max')">${yOpts}</select>
       `; 
-      
+      //      <br>Year Range: <select id="sMin" onchange="yearChange('Min')">${yOpts.replace("selected", "")}</select> - <select id="sMax" onchange="yearChange('Max')">${yOpts}</select>
+
       var tTip = `<div style="margin:5px; text-align: left;">
               Total Values: <span id='nfi-{key}' class'num-fltr-items'>{}</span><br>
               Search: <input type="text" onchange="inputChange('{key}')" onpaste="inputChange('{key}')" onkeyup="inputChange('{key}')" value="{}" data-key="{key}">
