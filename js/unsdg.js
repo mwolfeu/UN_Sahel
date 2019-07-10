@@ -1,7 +1,8 @@
 var UNSDG = {
   tipData: {},
   filterRangeMin:0,
-  filterRangeMax:0
+  filterRangeMax:0,
+  rangeInited:false
 };
 
 var goalNames = [
@@ -67,6 +68,23 @@ function UNSDG_init (errors, rows) {
   keysByKey = d3.nest().key(k=>k.key).object(keys); // org by key
   UNSDG.keysByKey = keysByKey;
   
+  function onKeyTipShown (e) {
+    if (!UNSDG.rangeInited) {
+      $( "#slider-range" ).slider({
+        range: true,
+        min: 1990,
+        max: 2019,
+        values: [1990,2019],
+        slide: function( event, ui ) {
+          console.log(ui.values[0] + " - " + ui.values[1])
+          //$( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+          $( "#amount" ).html( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        }
+      });
+      UNSDG.rangeInited = true;
+    }
+  }
+  
   function onKeyTipShow (e) {
     UNSDG.startKeyTip = $(e.popper).find("input").val() 
       + $(e.popper).find("select").eq(0).val()
@@ -92,6 +110,7 @@ function UNSDG_init (errors, rows) {
 
       // <br>Year Range: <input type="number" value="" min="2" max="2018" id="sMin" onchange="yearChange('Min')"> - <input type="number" id="sMax" onchange="yearChange('Max')"></select>
       var tTipYears = `
+      <br> <label for="amount">Year Range: </label> <span id="amount">1990 - 2019</span > <div id="slider-range" style="margin:5px"></div>
       <br>Year Range: <select id="sMin" onchange="yearChange('Min')">${yOpts.replace("selected", "")}</select> - <select id="sMax" onchange="yearChange('Max')">${yOpts}</select>
       `; 
       
@@ -109,6 +128,7 @@ function UNSDG_init (errors, rows) {
             inertia: true,
             duration: [500,0],
             onShow:onKeyTipShow,
+            onShown:onKeyTipShown,
             onHide:onKeyTipHide
           }); 
 
@@ -299,7 +319,7 @@ function UNSDG_init (errors, rows) {
         }); 
         
        UNSDG.tipData['tInst' + hash] = tippy($(d.currentTarget).find('#meta-by-indicator')[0], {
-          content: "hi",
+          content: "",
           //target: '#meta-by-indicator',   // TIPPY CANT DO TWO DIFFERENT TARGETS !
           animation: "shift-away",
           arrow: true,
