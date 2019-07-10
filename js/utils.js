@@ -106,3 +106,10 @@ String.prototype.hashCode = function() {
   }
   return hash;
 };
+
+// check if element is in viewport
+// $(elem).is(':visible')
+// return true for an element with visibility:hidden
+jQuery.expr.filters.visible = function( elem ) {
+    return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
+};

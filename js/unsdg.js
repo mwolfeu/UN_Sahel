@@ -1,9 +1,8 @@
 var UNSDG = {
   tipData: {},
-  //filterRangeMin:0,
-  //filterRangeMax:0,
-  filterRangeChanged:false,
-  rangeInited:false
+  filterRangeMin:1990,
+  filterRangeMax:2019,
+  filterRangeChanged:false
 };
 
 var goalNames = [
@@ -70,28 +69,23 @@ function UNSDG_init (errors, rows) {
   UNSDG.keysByKey = keysByKey;
   
   function onKeyTipShown (e) {
-    if (!UNSDG.rangeInited) {
-      $( "#slider-range" ).slider({
-        range: true,
-        min: 1990,
-        max: 2019,
-        values: [1990,2019],
-        change: function(event, ui) {
-          UNSDG["filterRangeChanged"] = true
-        },
-        slide: function( event, ui ) {
-          console.log(ui.values[0] + " - " + ui.values[1])
-          //$( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-          $( "#amount" ).html( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-          UNSDG["filterRangeMin"] = ui.values[ 0 ];
-          UNSDG["filterRangeMax"] = ui.values[ 1 ];
-          inputChange('TimePeriod');
-        }
-      });
-      UNSDG["filterRangeMin"] = 1990;
-      UNSDG["filterRangeMax"] = 2019;
-      UNSDG.rangeInited = true;
-    }
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 1990,
+      max: 2019,
+      values: [UNSDG["filterRangeMin"],UNSDG["filterRangeMax"]],
+      change: function(event, ui) {
+        UNSDG["filterRangeChanged"] = true
+      },
+      slide: function( event, ui ) {
+        console.log(ui.values[0] + " - " + ui.values[1])
+        //$( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        $( "#amount" ).html( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        UNSDG["filterRangeMin"] = ui.values[ 0 ];
+        UNSDG["filterRangeMax"] = ui.values[ 1 ];
+        inputChange('TimePeriod');
+      }
+    });
   }
   
   function onKeyTipShow (e) {
@@ -296,13 +290,13 @@ function UNSDG_init (errors, rows) {
     // X empty txt search bug - flipping through popups too fast
     // X resize bug
     // X responsive css grid params
-    // NOPE: take avg of all indicators you expanded (i.e. do avg and separated - use display hide/show)
-    
     // X path tip / line tip
+    // X filter year range 
+    // NOPE: take avg of all indicators you expanded (i.e. do avg and separated - use display hide/show)
+    // slider show bug
     
-    // filter year range 
+    
     // lowest to highest sorting
-    
     // redo help
     
     recursiveList(nData, 0);
