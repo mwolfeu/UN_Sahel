@@ -2,7 +2,8 @@ var UNSDG = {
   tipData: {},
   filterRangeMin:1990,
   filterRangeMax:2019,
-  filterRangeChanged:false
+  filterRangeChanged:false,
+  bodyScroll:true
 };
 
 var goalNames = [
@@ -64,6 +65,13 @@ function yearChange(val) {
 function UNSDG_init (errors, rows) {
   console.log('UNSDG')
   myFullpage.moveTo(4);
+  
+  $('#grid-missing').on("mouseenter", d=>UNSDG.bodyScroll=false);
+  $('#grid-missing').on("mouseleave", d=>UNSDG.bodyScroll=true);
+  
+  $('body').bind('mousewheel', function() { // when hovering, don't propagate scroll to body
+    return UNSDG.bodyScroll;  // generates errors but works regardless.
+  });
   
   var keys = [
     // {key:"Target", label:"Goal", accessor:d=>parseInt(d), initState:"", qty:0},
