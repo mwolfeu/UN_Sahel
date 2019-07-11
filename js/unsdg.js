@@ -48,6 +48,12 @@ function inputChange(e, init=false) {
   keyObj.qty = keyObj.keyVals.length;
   
   $("#nfi-" + e).html(keyObj.qty);
+  
+  var tot = UNSDG.keys.reduce((p,v) => 
+  (typeof(p)=="number"?p:p.qty)*v.qty
+  );
+  //console.log (tot);
+  $("#missing-total").html(tot);
 }
 
 function yearChange(val) {
@@ -66,6 +72,7 @@ function UNSDG_init (errors, rows) {
     {key:"SeriesCode", label:"Indicator", accessor:d=>d, initState:"dim", qty:0, filter:"-3."} // d.split('-')[0]
   ];
   keysByKey = d3.nest().key(k=>k.key).object(keys); // org by key
+  UNSDG.keys = keys;
   UNSDG.keysByKey = keysByKey;
   
   function onKeyTipShown (e) {
@@ -112,11 +119,9 @@ function UNSDG_init (errors, rows) {
       
       var yOpts = range(1989, 2019).map(d=>d==1989?'<option value="0" selected>Choose</option>':`<option value="${d}">${d}</option>`).join('');
 
-      // <br>Year Range: <input type="number" value="" min="2" max="2018" id="sMin" onchange="yearChange('Min')"> - <input type="number" id="sMax" onchange="yearChange('Max')"></select>
       var tTipYears = `
       <br> <label for="amount">Year Range: </label> <span id="amount">1990 - 2019</span > <div id="slider-range" style="margin:5px"></div>
       `; 
-      //      <br>Year Range: <select id="sMin" onchange="yearChange('Min')">${yOpts.replace("selected", "")}</select> - <select id="sMax" onchange="yearChange('Max')">${yOpts}</select>
 
       var tTip = `<div style="margin:5px; text-align: left;">
               Total Values: <span id='nfi-{key}' class'num-fltr-items'>{}</span><br>
