@@ -1,11 +1,38 @@
 /* Style for our header texts
 * --------------------------------------- */
+body{
+  font-family: 'Literata', serif;
+  background-color: Floralwhite ;
+}
+
 h1{
   font-size: 5em;
-  font-family: arial,helvetica;
+  font-family: 'Literata', serif;
+  font-weight: 900;
+  line-height: 1.3em;
   color: #fff;
-  margin:0;
+  margin:0px;
   padding:0;
+  padding-bottom: 30px;
+  border-bottom: 1px solid white;
+}
+
+
+.layer h2{
+  font-size: 1.8em;
+  font-family: 'Literata', serif;
+  font-weight: 400;
+  margin-top: 50px;
+  color: #fff;
+  padding-top:-10px;
+}
+
+h2{
+  font-size: 2em;
+  font-family: 'Literata', serif;
+  font-weight: 700;
+  line-height: 1.1em;
+
 }
 
 /* Centered texts in each section
@@ -13,6 +40,7 @@ h1{
 .section{
   text-align:center;
   overflow: hidden;
+  background-color: floralwhite;
 }
 
 #myVideo{
@@ -37,19 +65,12 @@ h1{
 /* Layer with position absolute in order to have it over the video
 * --------------------------------------- */
 #section0 .layer{
-  position: absolute;
+  position: relative;
+  display:inline-block;
   z-index: 4;
-  width: 100%;
-  left: 0;
-  top: 43%;
+  top:30%;
 
-  /*
-  * Preventing flicker on some browsers
-  * See http://stackoverflow.com/a/36671466/1081396  or issue #183
-  */
-  -webkit-transform: translate3d(0,0,0);
-  -ms-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
+  
 }
 
 /*solves problem with overflowing video in Mac with Chrome */
@@ -81,19 +102,22 @@ video::-webkit-media-controls {
 
 .part {
   margin: 0% 5% 0% 5%;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Literata', serif;
 }
   
 .part h2 {
   text-align: left;
+  padding:0;
+  margin-bottom:10px;
 }
 
 .chapeau {
-	width: 45vw;
-	padding-bottom: 1rem;
-	font-style: italic !important;
-  font-size: 1.2rem;
+	width: 30vw;
+  font-size: 1em;
   text-align: left;
+  border-top: 1px solid black;
+  padding-top:10px;
+
 }
 
 .italic {

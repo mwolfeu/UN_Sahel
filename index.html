@@ -3,14 +3,12 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Sahel Fragility Demo</title>
+	<title>Sahel in Data</title>
 	<meta name="author" content="Alvaro Trigo Lopez" />
   <meta name="description" content="Sahel Fragility Demo" />
   <meta name="keywords"  content="sahel narrative visualization" />
 	<meta name="Resource-type" content="Document" />
-
-  
-  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata:400,400i,700i|Work+Sans:400,700,900&display=swap" rel="stylesheet">  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="lib/fullPage.js/dist/fullpage.css" />
 <!--
 	<link rel="stylesheet" type="text/css" href="libs/fullPage.js/examples/examples.css" />
@@ -26,11 +24,12 @@
 <div id="fullpage">
   
 	<div class="section " id="section0">
-		<video id="myVideo" muted data-autoplay>
+		<video id="myVideo" muted data-autoplay loop>
 			<source src="img/intro_vid.m4v" type="video/mp4">
 		</video>
 		<div class="layer">
-			<h1>Sahel Fragility Demo</h1>
+			<h1>The Sahel Region <br>in Data</h1>
+      <h2> Mapping the known and the unknown</h2>  
 		</div>
 	</div>
 
@@ -38,20 +37,20 @@
   
   <ACLED />
 	<div class="part" id="sec-violent-entrepreneurs">
-		<h2>How has violence contributed to regional <span class="italic">fragility</span>?</h2>
+		<h2>Distribution of incidents <br>over the Sahel region</h2>
 		<div class="chapeau">
-		After the fall of Libya, black markets were rife with arms and drugs.  The coup in Mali further opened the trade route for illicit goods into the Sahel which further destabilized the region.	 	
+		Monthly violent incidents and number of fatalities over seven years.	The animation renders the evolution of the situations over that period in the different countries. 	
 		</div>
 
     <div class="vis-container">
-			<div id="ds-src" class="ds-srcs">Source: ACLED</div>
+			<div id="ds-src" class="ds-srcs">Source: ACLED - 2011 to 2018</div>
 			<div id="violence-date">Loading...</div>
 			<div id="violence-map" style="border:1px dotted blue; width: 700px; height: 60vh; position: relative;"></div>
 			
-			<div id="mapLegend3" >Circle radius increases with event fatalities</div>
+			<div id="mapLegend3" >Circle radius = fatalities</div>
 			<div id="mapLegend0" class="map-legend">
 				<div id="top">
-					<div>Events Per Month (Squared)</div>
+					<div>Number of Events (monthly)</div>
 					<img src="img/viridis.png">
 				</div>
 				<div><div id="min">1</div><div id="max">169</div></div>
@@ -59,7 +58,7 @@
 
 			<div id="mapLegend1" class="map-legend">
 				<div id="top">
-					<div>Actor Fatality Sum (Squared)</div>
+					<div>Number of Fatalities (per event)</div>
 					<img src="img/redgradient.png">
 				</div>
 				<div><div id="min">0</div><div id="max">13K</div></div>
@@ -80,9 +79,9 @@
     
   <RADAR />  
   <div id="sec-fragility" class="part">
-		<h2>How can you measure <span class="italic">fragility</span>?</h2>
+		<h2>Accounting for Fragility<span class="italic"></span>?</h2>
 		<div class="chapeau">
-		Several indexes exist that try to comprehend and measure the plural dimensions of fragility. The Fragile States Index (FSI), composed of four meta-categories, is among the most used.
+		Several indexes exist that try to comprehend and measure the plural dimensions of fragility. Here, the charts display the Fragile States Index (FSI).
 		</div>
 		
 			
@@ -106,7 +105,7 @@
         <img id="star-back" class="ui-controls" src="img/angle-left-solid.svg">
         <img id="star-ctrl" class="ui-controls" src="img/play-circle-solid.svg">
         <img id="star-frwd" class="ui-controls" src="img/angle-right-solid.svg">
-      <div id="ds-src" class="ds-srcs">Source: FSI</div>
+      <div id="ds-src" class="ds-srcs">Source: FSI (2007-2018)</div>
 			</div>
 		</center>
   </div>
@@ -117,9 +116,9 @@
     
     <UNSDG />
     <div id="sec-unsdg" class="part">
-      <h2>UNSDG Dataset: Missing pieces in the picture of <span class="italic">fragility</span>.</h2>
+      <h2>UNSDG Dataset: Missing pieces</h2>
       <div class="chapeau">
-        Measuring success has become one of the most critical and arguably difficult aspects of United Nations initiatives in the Sahel region. For the purposes of their 2030 Agenda, they have compiled over two hundred and thirty indicators from various sources to inform their policy creation. Unfortunately for many countries in the Sahel, a large number of these measures remain empty or sparsely populated.
+        The SDG 2030 Agenda clustered over 230 indicators into 17 Goals. Though, for many countries in the Sahel, a large number of these measures remain empty or sparsely populated.
       </div>
     </div>
     
@@ -239,8 +238,8 @@ acjs = $('#accordion').accordionjs();
 
 <script type="text/javascript">
     var myFullpage = new fullpage('#fullpage', {
-        verticalCentered: true,
-        sectionsColor: ['#fafafa', '#fafafa', '#fafafa', '#fafafa', '#333333']
+        verticalCentered: false,
+        sectionsColor: ['#fafafa', '#C7B299', 'floralwhite', '#C7B299']
     });
 </script>
 
