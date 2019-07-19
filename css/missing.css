@@ -191,3 +191,29 @@ sec-fragility  .grid-container {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
+
+/* DnD */
+.draggable { 
+  background: #fff; 
+  ppadding-bottom: 20px; 
+  ppadding-top: 20px; 
+  ppadding-right: 0px; 
+  ppadding-left: 0px; 
+  cursor: move;
+  border: #000 1px solid;
+  text-align: center;
+  font-weight: bold
+  width: fit-content;
+  display: inline-block;
+  padding: 0px 5px;
+  margin: 0px 3px;
+  border-radius: 5px;
+}
+.droppable { 
+  width: fit-content;
+  display: inline;
+}
+
+.switch {
+  width: 1rem;
+}
