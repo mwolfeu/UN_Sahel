@@ -245,7 +245,8 @@ function FSI_init(errors, rows) {
 		$("#fsi-star-individual-bg").addClass("hidden");
 	});
 	
-	$("#vis-ifs-lvl0-Mali").css("border-top", "8px solid #333");
+	$("#vis-ifs-lvl0-Mali").css("border-top", "1px solid #333" );
+	
 	
 	var cfg = jQuery.extend(true, {}, defCfgLineGraph);
 	cfg.data.labels = range(FSI.yearMin, FSI.yearMax);
