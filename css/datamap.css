@@ -1,3 +1,84 @@
+#violence-map-click {
+  width: max-content;
+  height: min-content;
+  background-color: #f0f0f0;
+  position: absolute;
+  transform: translateX(-100vw);
+  z-index: 5;
+}
+
+#violence-map-click #flex-container {
+  display: flex;
+}
+
+svg .mg-active-datapoint-container {
+  pointer-events: none;  /* events from this child node would trigger popup mouseleave */
+}
+
+#violence-map-click #title {    
+    align-self: center;
+    transform: rotate(-180deg) translateX(-40%);
+    max-width: 2rem;
+    font-size: 24px;
+    writing-mode: tb-rl;
+}
+
+#violence-map-click #g0 {
+  margin-right: 0px;
+}
+  
+#violence-map-click .vmc_graph {
+  width: min-content;
+  mmargin: 5px;
+  bbackground-color: red;
+  display: inline-block;
+}
+
+#sec-violent-entrepreneurs #violence-sidebar  {  
+  display: none;
+  width: min-content;
+  height: min-content;
+  background: #fafafa;
+  opacity: .92;
+  position: absolute;
+  transform: translateX(-110%);
+  z-index: 3;
+  transition: 0.2s;
+}
+
+#sec-violent-entrepreneurs #sb-icon  {    
+  background-image: url('../img/chart-line-solid.svg');
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  float: right;
+  position: absolute;
+  /* padding: 5px; */
+  margin: 5px;
+}
+
+#sec-violent-entrepreneurs #sb-grid{    
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+  margin: 30px 10px 30px 0px;
+}
+
+#sec-violent-entrepreneurs #sb-grid .sb-element-title {
+  transform-origin: center;
+  ttransform: rotate(-90deg);
+  align-self: center;
+}
+
+.sb-element-graph {
+  width: 18vw;
+  height: 6vh;
+}
+
+.sb-element-graph .mg-active-datapoint-container {
+  transform: translate(0px,20px)
+}
+
 #sec-violent-entrepreneurs #mapLegend0  {    
 	transform: translate(6vh,-18vh);
 }
@@ -35,6 +116,33 @@
 #sec-violent-entrepreneurs .map-legend #max {
 	float:right;
 }
+
+#sec-violent-entrepreneurs #violence-legend {
+  display: flex;
+  border-top: 2px solid black;
+  padding-top: 5px;
+}
+
+#sec-violent-entrepreneurs #violence-legend #country-color-scale {
+  display: flex;
+}
+
+#sec-violent-entrepreneurs #violence-legend #country-color-img {
+	background-image: url(../img/viridis.png);
+  background-size: contain;
+  background-position: top;
+  transform: translateY(.1em);
+  background-repeat: no-repeat;
+  width: 100px;
+  margin: 0px 3px;
+  opacity: .7;
+}
+
+#sec-violent-entrepreneurs #violence-legend #text {
+  margin-left: auto;
+  text-align: right;
+}
+
 
 #sec-violent-entrepreneurs .vis-container {
 	display: flex;

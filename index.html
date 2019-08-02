@@ -22,6 +22,13 @@
   
 </head>
 <body>
+<div id="violence-map-click">
+  <div id="flex-container">
+    <div id="title"></div>
+    <div id="g0" class="vmc_graph"></div>
+    <div id="g1" class="vmc_graph"></div>
+  </div>
+</div>
 
 <div id="fullpage">
   
@@ -39,16 +46,25 @@
   <ACLED />
 	<div class="part" id="sec-violent-entrepreneurs">
 		<h2>How has violence contributed to regional <span class="italic">fragility</span>?</h2>
+
 		<div class="chapeau">
 		After the fall of Libya, black markets were rife with arms and drugs.  The coup in Mali further opened the trade route for illicit goods into the Sahel which further destabilized the region.	 	
 		</div>
 
     <div class="vis-container">
+      
 			<div id="ds-src" class="ds-srcs">Source: ACLED</div>
+      <div id="sb-icon"></div>
+      <div id="violence-sidebar">  <div id="sb-grid">
+      <div id="sb-year"></div> <div>Fatalities</div> <div>Incidents</div>
+      </div> </div>
 			<div id="violence-date">Loading...</div>
 			<div id="violence-map" style="border:1px dotted blue; width: 700px; height: 60vh; position: relative;"></div>
 			
+<!--
 			<div id="mapLegend3" >Circle radius increases with event fatalities</div>
+-->
+<!--
 			<div id="mapLegend0" class="map-legend">
 				<div id="top">
 					<div>Events Per Month (Squared)</div>
@@ -64,7 +80,16 @@
 				</div>
 				<div><div id="min">0</div><div id="max">13K</div></div>
 			</div>
-			
+-->
+      
+			<div id="violence-legend">
+        <div id="country-color-scale"><b>Incident Frequency:&nbsp;</b><div id="country-color-min">0</div> <div id="country-color-img">  </div><div id="country-color-max">170</div></div>
+        <div id="text">Click on countries for graphs. White circles indicate no fatalities.<br>Hover on circles for incident information. Radius varies with deaths.</div>
+<!--
+        <div id="text2">Click on countries for graphs. White circles indicate no fatalities.</div>
+-->
+      </div>
+      
 			<div id="violence-controls">
 				<img id="violence-back" class="ui-controls" src="img/angle-left-solid.svg">
 				<img id="violence-ctrl" class="ui-controls" src="img/play-circle-solid.svg">
@@ -194,18 +219,57 @@
 <script src="lib/topojson.js"></script>
 <script src="lib/datamaps.world.js"></script>
 
+
+<!-- MG start -->
+<link href='css/metricsgraphics.css' rel='stylesheet' type='text/css'>
+
+<script src='lib/MG/js/MG.js'></script>
+<script src='lib/MG/js/misc/utility.js'></script>
+<script src='lib/MG/js/common/data_graphic.js'></script>
+<script src='lib/MG/js/common/hooks.js'></script>
+<script src='lib/MG/js/common/register.js'></script>
+<!--
+<script src='lib/MG/js/common/bootstrap_tooltip_popover.js'></script>
+-->
+<script src='lib/MG/js/common/scales.js'></script>
+<script src='lib/MG/js/common/chart_title.js'></script>
+<script src='lib/MG/js/common/y_axis.js'></script>
+<script src='lib/MG/js/common/x_axis.js'></script>
+<script src='lib/MG/js/common/scales.js'></script>
+<script src='lib/MG/js/common/init.js'></script>
+<script src='lib/MG/js/common/markers.js'></script>
+<script src='lib/MG/js/common/rollover.js'></script>
+<!--
+<script src='lib/MG/js/common/zoom.js'></script>
+<script src='lib/MG/js/common/brush.js'></script>
+-->
+<script src='lib/MG/js/common/window_listeners.js'></script>
+<!--
+<script src='lib/MG/js/layout/bootstrap_dropdown.js'></script>
+<script src='lib/MG/js/layout/button.js'></script>
+-->
+<script src='lib/MG/js/charts/line.js'></script>
+<script src='lib/MG/js/charts/histogram.js'></script>
+<script src='lib/MG/js/charts/point.js'></script>
+<script src='lib/MG/js/charts/bar.js'></script>
+<script src='lib/MG/js/charts/table.js'></script>
+<script src='lib/MG/js/charts/missing.js'></script>
+<script src='lib/MG/js/misc/process.js'></script>
+<script src='lib/MG/js/misc/smoothers.js'></script>
+<script src='lib/MG/js/misc/formatters.js'></script>
+<script src='lib/MG/js/misc/transitions.js'></script>
+<script src='lib/MG/js/misc/error.js'></script>
+<!-- MG end -->
+
+
+
+<!--
+<script src="lib/d3plus-plot.v0.8.full.min.js"></script>
+-->
+
 <script src="lib/Chart.bundle.min.js"></script>
 <script src="lib/chartjs-plugin-colorschemes.min.js"></script>
 <script src="lib/chartjs-plugin-annotation.min.js"></script>
-
-<!--
-<script src="lib/jquery.accordionjs.js"></script>
-<link rel="stylesheet" type="text/css" href="css/jquery.accordionjs.css"/>
-<script>
-acjs = $('#accordion').accordionjs();
-</script>
--->
-
 
 <script src="lib/popper.js@1"></script>
 <script src="lib/tippy.js@4"></script>

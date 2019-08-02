@@ -63,8 +63,7 @@ function yearChange(val) {
 }
 
 function UNSDG_init (errors, rows) {
-  console.log('UNSDG')
-  myFullpage.moveTo(4);
+  console.log('UNSDG');
   
   $('#grid-missing').on("mouseenter", d=>UNSDG.bodyScroll=false);
   $('#grid-missing').on("mouseleave", d=>UNSDG.bodyScroll=true);
