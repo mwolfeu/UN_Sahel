@@ -17,9 +17,9 @@ svg .mg-active-datapoint-container {
 
 #violence-map-click #title {    
     align-self: center;
-    transform: rotate(-180deg) translateX(-40%);
+    transform: rotate(-180deg) translateX(-10%);
     max-width: 2rem;
-    font-size: 24px;
+    font-size: 20px;
     writing-mode: tb-rl;
 }
 
@@ -131,7 +131,7 @@ svg .mg-active-datapoint-container {
 	background-image: url(../img/viridis.png);
   background-size: contain;
   background-position: top;
-  transform: translateY(.1em);
+  transform: translateY(.3em);
   background-repeat: no-repeat;
   width: 100px;
   margin: 0px 3px;

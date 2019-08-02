@@ -298,7 +298,7 @@ function ACLED_init(errors, rows, reinit = false) {
   var maxI = 0;
   var maxF = 0;
   // incidents & fatalities by year, country
-  var acledIF = d3.nest().key(k => k.EVENT_DATE.split('-')[2]).key(k => k.COUNTRY).rollup(d => {
+  let acledIF = d3.nest().key(k => k.EVENT_DATE.split('-')[2]).key(k => k.COUNTRY).rollup(d => {
     var i = d.length;
     if (i > maxI) maxI = i;
     
