@@ -110,6 +110,22 @@
     border: 1.2px solid white;
 }
 
+.section#section4 #left-side #year .control-tick-labels {
+  display: flex;
+}
+
+.section#section4 #left-side #year .control-tick-labels :first-child {
+  margin-right: auto;
+}
+
+.section#section4 #left-side #year .control-tick-label {
+    transform: rotate(-45deg);
+    width: min-content;
+    display: inline-block;
+    font-size: .8rem;
+}
+
+
  #left-side .ui-slider-horizontal {
   width: 96%;
   transform: translateX(5px);

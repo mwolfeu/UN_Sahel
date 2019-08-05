@@ -28,6 +28,31 @@ var rangeLabels = {
 // simpler version
 function  initSimple() {
   
+  // UTIL FCN FOR BELOW
+  function findRangeLabel(num) {
+    var label = "";
+    
+    Object.keys(rangeLabels).forEach(d => { if (num >= d) label = rangeLabels[d] });
+    return label;
+  }
+  
+  // SPARSITY FILTER
+  $( ".section#section4 #left-side #sparsity .control" ).slider({
+    range: false,
+    min: 0,
+    max: 100,
+    value: 10,
+    change: function(event, ui) {
+      console.log('sparsity changed')
+    },
+    slide: function( event, ui ) {
+      $(".section#section4 #left-side #sparsity .value").html(ui.value + "% - " + findRangeLabel(ui.value))
+    }
+  });
+  
+  var value = $(".section#section4 #left-side #sparsity .control").slider('value');
+  $(".section#section4 #left-side #sparsity .value").html(value + "% - " + findRangeLabel(value));
+  
   // GOAL FILTER
   range(0,16).forEach(d => {  
     $(".section#section4 #left-side #goal .control").append(`<div id="lvl${d}" class="item lvl" data-sdg-num="${d}"></div>`); // sdg sparsity level
@@ -57,30 +82,25 @@ function  initSimple() {
     
   $(".section#section4 #left-side #goal .control .item").css("opacity",".6");
   
-  // UTIL FCN FOR BELOW
-  function findRangeLabel(num) {
-    var label = "";
+  // COUNTRY FILTER
+  // add text till P gives me the svg
+  sahelNames.forEach (d => {
+    $(".section#section4 #left-side #country .control").append(`<div id="${d}"class="country">${d}</div>`);
+    })
     
-    Object.keys(rangeLabels).forEach(d => { if (num >= d) label = rangeLabels[d] });
-    return label;
-  }
-  
-  // SPARSITY FILTER
-  $( ".section#section4 #left-side #sparsity .control" ).slider({
-    range: false,
-    min: 0,
-    max: 100,
-    value: 10,
-    change: function(event, ui) {
-      console.log('sparsity changed')
-    },
-    slide: function( event, ui ) {
-      $(".section#section4 #left-side #sparsity .value").html(ui.value + "% - " + findRangeLabel(ui.value))
-    }
-  });
-  
-  var value = $(".section#section4 #left-side #sparsity .control").slider('value');
-  $(".section#section4 #left-side #sparsity .value").html(value + "% - " + findRangeLabel(value));
+  $(".section#section4 #left-side #country .control").children().click(d => {
+    var c = $(d.target).attr("id");
+    $(d.target).css("color", "blue");
+    $(d.target).siblings().css("color", "");
+    $(".section#section4 #left-side #country .value").html(c);
+    $(".section#section4 #left-side #country .default").addClass('modified');
+    
+    $(".section#section4 #left-side #country .default.modified").click(d => {
+      $(".section#section4 #left-side #country .default").removeClass('modified');
+      $(".section#section4 #left-side #country .value").html("ALL");
+      $(".section#section4 #left-side #country .control").children().css("color", "");
+      })
+    })
   
   // YEAR FILTER
   var yMin = 1990, yMax = 2019;
