@@ -17,6 +17,7 @@
   <link rel="stylesheet" type="text/css" href="css/main.css" />
   <link rel="stylesheet" type="text/css" href="css/datamap.css" />
   <link rel="stylesheet" type="text/css" href="css/radar.css" />
+  <link rel="stylesheet" type="text/css" href="css/unsdg.css" />
   <link rel="stylesheet" type="text/css" href="css/missing.css" />
   
 </head>
@@ -137,44 +138,81 @@
           <span>(<span id="missing-total">1000</span> Datapoints Selected)</span>
           
         </div>
-<!--
-        <div id="grids-wrapper"></div>
--->
         <div id="grid-wrapper">
           <div id="grid-missing" class="grid-container"></div>
-        </div>     
+        </div>    
+      </div>    
+    </div>
+  </div>
+  
+  <div class="section" id="section4">
 <!--
-      </div> 
+    <UNSDG V0.2/>
 -->
-    </div>
     
-
-
-    
-<!--
-    <div id="missing-overview" class="missing-screen" style="display: none;">    
-      <div id="missing-wrapper">
-        <div class="missing-title">Overview</div>
-        <div id="grid-wrapper">
-          <div id="grid-unsdg" class="grid-container"></div>
-        </div>     
-      </div> 
-    </div>
-
-    <div id="missing-by-indicator" class="missing-screen" style="display: none;"> 
-      <div id="missing-wrapper">
-        <div class="missing-title"> &lt; By Indicator</div>
-        <div id="grid-wrapper">
-          <div id="grid-by-indicator" class="grid-container">
+    <div id="right-side">
+      <div id="sec-unsdg" class="part">
+        <h2>UNSDG Dataset: Missing pieces</h2>
+        <div class="chapeau">
+          The SDG 2030 Agenda clustered over 230 indicators into 17 Goals. Though, for many countries in the Sahel, a large number of these measures remain empty or sparsely populated.
+        </div>
+        
+        <div id="main-text">
+          <div id="mt-goal" class="highlight">NO POVERTY</div> has <div id="mt-ind-num" class="highlight">143</div> indicators.<br>
+          To date, <div id="mt-ind-pct" class="highlight">20%</div> of available<br>
+          data seem <div id="mt-ind-qual" class="highlight">reliable</div> for the<br>
+          <div id="mt-loc" class="highlight">Sahel Region</div> over <div id="mt-year" class="highlight">1998-2018</div>.
+        </div>
+        
+        <div id="main-graphs">
+          <div id="head">
+            <div id="ind">Indicators: <div id="ind-num">3</div></div>
+            <div></div>
+            <div class="mg-header mg-item">name</div>
+            <div class="mg-header mg-item">preview</div>
           </div>
-        </div>     
+          <div id="grid-container">
+            <div id="grid-graphs">
+              <div class="mg-item-label mg-item">People under the poverty level</div> <div class="mg-item">Graph</div>
+              <div class="mg-item-label mg-item">Indicator 2</div> <div class="mg-item">Graph</div>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
--->
-    
-    
+  
+    <div id="left-side">
+      <div id="sparsity" class="filter">
+        <div class="label">select sparsity</div>
+        <div class="default">X</div>
+        <div class="value"></div>
+        <div class="control"></div>
+      </div>
+      
+      <div id="goal" class="filter">
+        <div class="label">select goal</div>
+        <div class="default">X</div>
+        <div class="value">ALL</div>
+        <div class="control"></div>
+      </div>
+      
+      <div id="country" class="filter">
+        <div class="label">select country</div>
+        <div class="default modified">X</div>
+        <div class="value">Burkina Faso</div>
+        <div class="control"></div>
+      </div>
+      
+      <div id="year" class="filter">
+        <div class="label">select years</div>
+        <div class="default">X</div>
+        <div class="value"></div>
+        <div class="control"></div>
+      </div>
+    </div>
   </div>
-
+  
 </div>
 
 <script type="text/javascript" src="lib/fullPage.js/dist/fullpage.js"></script>
@@ -257,7 +295,7 @@
     var myFullpage = new fullpage('#fullpage', {
         verticalCentered: false,
         // P: feel free to revert this.  The second section color just clashed with the map colors. It was: '#C7B299'
-        sectionsColor: ['#fafafa', '#fafafa', 'floralwhite', '#C7B299'] 
+        sectionsColor: ['#fafafa', '#fafafa', 'floralwhite', '#C7B299', '#C7B299'] 
     });
 </script>
 
@@ -268,6 +306,7 @@
 <script src="js/fsi_star.js"></script>
 <script src="js/datasets.js"></script>
 <script src="js/acled.js"></script>
+<script src="js/missing.js"></script>
 <script src="js/unsdg.js"></script>
 <script src="js/main.js"></script>
 

@@ -383,4 +383,5 @@ function UNSDG_init (errors, rows) {
     arrow: true,
     inertia: true
   }); 
+  initSimple();
 }
