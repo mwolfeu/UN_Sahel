@@ -62,6 +62,38 @@ function yearChange(val) {
   inputChange('TimePeriod');
 }
 
+function genPrecomputed (rows) {
+  // pre-computed for unsdg simple
+  var g = Object.keys(d3.nest().key(k=>k.GeoAreaName).object(rows));
+  var iData = d3.nest().key(k=>k.SeriesCode).object(rows);
+  var i = Object.keys(iData);
+  
+  var gN = d3.nest().key(k=>parseInt(k.Target)).rollup(d => { // by goal
+    return Object.keys(d3.nest().key(k=>k.Target + k.SeriesCode).object(d)).length; // # of non-unique inds per goal
+    }).object(rows);  
+    
+  //var giN = d3.nest().key(k=>parseInt(k.Target)).key(k=>parseInt(k.SeriesName.split('?')[0])).rollup(d => { // by goal, indicator
+  //  return Object.keys(d3.nest().key(k=>k.Target + k.SeriesCode).object(d)).length; // # of non-unique inds per goal
+  //  }).object(rows);  
+    
+  var gN = d3.nest().key(k=>parseInt(k.Target)).rollup(d => { // # inds by goal
+    // dictionary of all permutations in goal 
+    var goal = parseInt(d[0].Target);
+    return i.filter(e => e.includes('-' + goal + ".")); // unique inds per goal
+    }).object(rows);  
+    
+  var allPossible = {
+    geos: g, 
+    inds: i,
+    geo_ind_max: g.length * i.length, // max # non-unique inds
+    //goal_inds: gN,
+    //goal_ind_max: giN,               // max # non-unique inds by goal
+    indsByGoal: gN // unique inds for each unique goal/country
+  }
+  
+  return (JSON.stringify(allPossible));
+}
+
 function UNSDG_init (errors, rows) {
   console.log('UNSDG');
   
@@ -383,5 +415,4 @@ function UNSDG_init (errors, rows) {
     arrow: true,
     inertia: true
   }); 
-  initSimple();
 }

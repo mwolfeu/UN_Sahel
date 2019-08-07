@@ -28,6 +28,10 @@ var dsImportList = {				// list of all indicators
   "UNSDG/UNSDG.csv":{											
     exceptions:Object.fromEntries(ds.UNSDGcols.map(d => [d, Number])),
     initFcn: UNSDG_init
+  },
+  "UNSDG/unsdg-simple.csv":{											
+    exceptions:Object.fromEntries(ds.UNSDGcols.map(d => [d, Number])),
+    initFcn: UNSDG_simple_init
   }
 };
 

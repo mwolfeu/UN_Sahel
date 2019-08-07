@@ -110,6 +110,10 @@
     border: 1.2px solid white;
 }
 
+.section#section4 #left-side #country .control #Layer_1 {
+  stroke-width: 4px;
+}
+
 .section#section4 #left-side #year .control-tick-labels {
   display: flex;
 }
