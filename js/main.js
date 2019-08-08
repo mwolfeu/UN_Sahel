@@ -1,4 +1,7 @@
 // TODO
+// BUGS
+// if a target exists for SDGS but is absent from all sahel, it will not be counted.
+//    Don't generate target list from sahel only dataset
 
 // SAHEL Countries:  Burkina Faso, Cameroon, Chad,The Gambia, Guinea, Mali, Mauritania, Niger, Nigeria and Senegal
 

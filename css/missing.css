@@ -32,11 +32,28 @@
     margin-top: 5vh;
 }
 
+.section#section4 #main-graphs #head, .section#section4 #main-graphs .mg-item-label {
+    margin: auto 0px;
+}
+
+.section#section4 #main-graphs #head, .section#section4 #main-graphs path.mg-main-area {
+  opacity:.9 !important;
+}
+
+.section#section4 #main-graphs #head, .section#section4 #main-graphs path.mg-main-line.mg-line1 {
+  stroke: white !important;
+  stroke-width: 2px !important;
+}
+
+.section#section4 #main-graphs #head, .section#section4 #main-graphs .mg-item-graph {
+    margin: auto auto;
+}
+
 .section#section4 #main-graphs #head, .section#section4 #main-graphs #grid-graphs {
     display: grid;
     text-align: left;
     grid-template-columns: repeat(2, 25vw);
-    grid-gap: 1vw;
+    grid-gap: 0.1vw 4vw;
 }
 
 .section#section4 #main-graphs #head #ind {
@@ -57,6 +74,8 @@
 
 .section#section4 #main-graphs #grid-container {
     margin-top: 1vh;
+    overflow-y: scroll;
+    height: 14vh;
 }
 
 .section#section4 #left-side .filter {

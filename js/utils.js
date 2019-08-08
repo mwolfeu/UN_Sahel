@@ -36,7 +36,19 @@ String.prototype.format = function() {
   }.bind(this));
 };
 
+// D3 svg reordering as z-index never works
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};
 
+d3.selection.prototype.moveToBack = function() { 
+  this.each(function() { 
+    this.parentNode.firstChild
+      && this.parentNode.insertBefore(this, firstChild); 
+    }) 
+  }; 
 
 
 
