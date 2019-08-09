@@ -146,6 +146,7 @@
 
 .section#section4 #right-side #year .control-tick-labels {
   display: flex;
+  margin-bottom: 15px;
 }
 
 .section#section4 #right-side #year .control-tick-labels :first-child {
