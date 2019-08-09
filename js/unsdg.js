@@ -68,14 +68,9 @@ function genPrecomputed (rows) {
   var iData = d3.nest().key(k=>k.SeriesCode).object(rows);
   var i = Object.keys(iData);
   
-  var gN = d3.nest().key(k=>parseInt(k.Target)).rollup(d => { // by goal
-    return Object.keys(d3.nest().key(k=>k.Target + k.SeriesCode).object(d)).length; // # of non-unique inds per goal
-    }).object(rows);  
-    
-  //var giN = d3.nest().key(k=>parseInt(k.Target)).key(k=>parseInt(k.SeriesName.split('?')[0])).rollup(d => { // by goal, indicator
-  //  return Object.keys(d3.nest().key(k=>k.Target + k.SeriesCode).object(d)).length; // # of non-unique inds per goal
-  //  }).object(rows);  
-    
+  // # unique indicators per UN indicator name
+  var iN = d3.nest().key(k => k.SeriesCode.split('?')[0]).rollup(r => [...new Set(r.map(d => d.SeriesCode))].length).object(rows);  
+  
   var gN = d3.nest().key(k=>parseInt(k.Target)).rollup(d => { // # inds by goal
     // dictionary of all permutations in goal 
     var goal = parseInt(d[0].Target);
@@ -85,9 +80,8 @@ function genPrecomputed (rows) {
   var allPossible = {
     geos: g, 
     inds: i,
+    uniqIndsByInd: iN,
     geo_ind_max: g.length * i.length, // max # non-unique inds
-    //goal_inds: gN,
-    //goal_ind_max: giN,               // max # non-unique inds by goal
     indsByGoal: gN // unique inds for each unique goal/country
   }
   
@@ -96,6 +90,7 @@ function genPrecomputed (rows) {
 
 function UNSDG_init (errors, rows) {
   console.log('UNSDG');
+  UNSDG.rows = rows;
   
   $('#grid-missing').on("mouseenter", d=>UNSDG.bodyScroll=false);
   $('#grid-missing').on("mouseleave", d=>UNSDG.bodyScroll=true);

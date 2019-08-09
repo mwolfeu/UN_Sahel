@@ -8,6 +8,12 @@
   width: 70vw;
 }
 
+.section#section4 #right-side #sec-unsdg {
+    height: 96vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .section#section4 #left-side {
   height: 100vh;
   background: #B9B0A4;
@@ -20,7 +26,7 @@
 .section#section4 #main-text {
     font-size: 4vw;
     text-align: left;
-    margin-top: 5vh;
+    margin: auto 0px;
 }
 
 .section#section4 .highlight {
