@@ -2,29 +2,31 @@
   display: flex;
 }
 
-.section#section4 #right-side {
+.section#section4 #left-side {
   height: 100vh;
   background: #C7B299;
   width: 70vw;
 }
 
-.section#section4 #right-side #sec-unsdg {
+.section#section4 #left-side #sec-unsdg {
     height: 96vh;
     display: flex;
     flex-direction: column;
 }
 
-.section#section4 #left-side {
+.section#section4 #right-side {
   height: 100vh;
   background: #B9B0A4;
   width: 30vw;
   display: flex;    
   flex-direction: column;
   text-align: left;
+  font-family: 'Roboto';
 }
 
 .section#section4 #main-text {
-    font-size: 4vw;
+    font-family: 'Roboto Mono', MONOSPACE;
+    font-size: 3vw;
     text-align: left;
     margin: auto 0px;
 }
@@ -36,6 +38,7 @@
 
 .section#section4 #main-graphs {
     margin-top: 5vh;
+    font-family: 'Roboto';
 }
 
 .section#section4 #main-graphs #head, .section#section4 #main-graphs .mg-item-label {
@@ -73,6 +76,7 @@
 .section#section4 #main-graphs .mg-header {
   font-style: italic;
   font-size: .95rem;
+  font-weight: 300;
 } 
 
 .section#section4 #main-graphs #grid-graphs {
@@ -84,50 +88,51 @@
     height: 14vh;
 }
 
-.section#section4 #left-side .filter {
+.section#section4 #right-side .filter {
     margin: auto 15px;
     width: auto;
 }
 
-.section#section4 #left-side .label, .section#section4 #left-side .default {
+.section#section4 #right-side .label, .section#section4 #right-side .default {
   font-style: italic;
   font-size: .95rem;
+  font-weight: 300;
   display: inline-block;
 }
 
-.section#section4 #left-side .value {
+.section#section4 #right-side .value {
   font-weight: bold;
   display: inline-block;
   float: right;
 }
 
-.section#section4 #left-side .default {
+.section#section4 #right-side .default {
   display: none;
   float: right;
   margin-left: 30px;
 }
 
-.section#section4 #left-side .modified {
+.section#section4 #right-side .modified {
   display: inline-block;
   cursor: pointer;
 }
 
-.section#section4 #left-side .control {
+.section#section4 #right-side .control {
   margin: 10px auto;
 }
 
-.section#section4 #left-side #goal .control {
+.section#section4 #right-side #goal .control {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
 
-.section#section4 #left-side #goal .control .lvl {
+.section#section4 #right-side #goal .control .lvl {
   height: calc(65px * .9);
   margin-top: auto;
   background-color: white;
 }
 
-.section#section4 #left-side #goal .control .item{
+.section#section4 #right-side #goal .control .item{
     height: 65px;
     width: 65px;
     background-repeat: no-repeat;
@@ -135,19 +140,19 @@
     border: 1.2px solid white;
 }
 
-.section#section4 #left-side #country .control #Layer_1 {
+.section#section4 #right-side #country .control #Layer_1 {
   stroke-width: 4px;
 }
 
-.section#section4 #left-side #year .control-tick-labels {
+.section#section4 #right-side #year .control-tick-labels {
   display: flex;
 }
 
-.section#section4 #left-side #year .control-tick-labels :first-child {
+.section#section4 #right-side #year .control-tick-labels :first-child {
   margin-right: auto;
 }
 
-.section#section4 #left-side #year .control-tick-label {
+.section#section4 #right-side #year .control-tick-label {
     transform: rotate(-45deg);
     width: min-content;
     display: inline-block;
@@ -155,7 +160,7 @@
 }
 
 
- #left-side .ui-slider-horizontal {
+ #right-side .ui-slider-horizontal {
   width: 96%;
   transform: translateX(5px);
   height: 2px;
@@ -164,7 +169,7 @@
   border: 0px;
 }
 
- #left-side .ui-slider-handle {
+ #right-side .ui-slider-handle {
   border: 1px solid white !important;
   height: 10px !important;
   width: 10px !important;

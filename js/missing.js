@@ -79,7 +79,7 @@ function  UNSDG_simple_init (errors, rows) {
       
     // console.log(goals);
     Object.keys(goals).forEach((d,i) => {    
-      $(".section#section4 #left-side #goal .control " +  `#lvl${d-1}`).css("height", `calc(65px * ${goals[d]})`);
+      $(".section#section4 #right-side #goal .control " +  `#lvl${d-1}`).css("height", `calc(65px * ${goals[d]})`);
       });
       
     // UNSDG_SIMPLE.goalPcnt = goals;
@@ -131,7 +131,7 @@ function  UNSDG_simple_init (errors, rows) {
     // console.log(countries);
     Object.keys(countries).forEach((d,i) => {    
       // console.log(d)
-      $('.section#section4 #left-side #country .control #Layer_1 polygon[data-name="' + d + '"]').each((i,e) => { // add country name
+      $('.section#section4 #right-side #country .control #Layer_1 polygon[data-name="' + d + '"]').each((i,e) => { // add country name
         $(e).css('fill', 'hsl(0, 0%, ' + ((countries[d] * 80) + 20) + '%)'); // min lum == 20%
         })
       });
@@ -146,7 +146,7 @@ function  UNSDG_simple_init (errors, rows) {
     var txtP = d3.mean(UNSDG_SIMPLE.selC, d => UNSDG_SIMPLE.cPcnt[d]);
     //~ var partOfWhole = 100/d3.sum(UNSDG_SIMPLE.selG, d => UNSDG_SIMPLE.ap.indsByGoal[d].length);
     //~ var txtP = d3.sum(UNSDG_SIMPLE.selG, d => UNSDG_SIMPLE.goalPcnt[d] * partOfWhole * UNSDG_SIMPLE.ap.indsByGoal[d].length);
-    $('.section#section4 #right-side #main-text #mt-ind-pct').html(parseInt(txtP * 100) + '%');
+    $('.section#section4 #left-side #main-text #mt-ind-pct').html(parseInt(txtP * 100) + '%');
   }
   
   var graphNest = d3.nest().key(k=>k.SeriesCode).key(k=>k.TimePeriod).object(rows);
@@ -157,7 +157,7 @@ function  UNSDG_simple_init (errors, rows) {
 
     // alpha-sorted set of all indicators used for selected goals could be precalculated
     var inds = [...new Set(UNSDG_SIMPLE.selG.map(d => UNSDG_SIMPLE.ap.indsByGoal[d].map(e => e.split('?')[0])).flat())].sort();
-    $('.section#section4 #right-side #main-graphs #grid-graphs').html("");
+    $('.section#section4 #left-side #main-graphs #grid-graphs').html("");
     
     inds.forEach(i => {
       var gData = range(2010, 2019).map(y => {
@@ -189,10 +189,10 @@ function  UNSDG_simple_init (errors, rows) {
         x_axis: false,
         y_axis: false,
         interpolate: d3.curveLinear,
-        target: ".section#section4 #right-side #main-graphs #grid-graphs #" + i
+        target: ".section#section4 #left-side #main-graphs #grid-graphs #" + i
       }
       
-      $('.section#section4 #right-side #main-graphs #grid-graphs').append(`<div class="mg-item-label mg-item">${indLabels[i]}</div> <div id=${i} class="mg-item-graph mg-item"></div>`)
+      $('.section#section4 #left-side #main-graphs #grid-graphs').append(`<div class="mg-item-label mg-item">${indLabels[i]}</div> <div id=${i} class="mg-item-graph mg-item"></div>`)
       MG.data_graphic(cfg);
       })
   }
@@ -207,7 +207,7 @@ function  UNSDG_simple_init (errors, rows) {
   }
   
   // SPARSITY FILTER
-  $( ".section#section4 #left-side #sparsity .control" ).slider({
+  $( ".section#section4 #right-side #sparsity .control" ).slider({
     range: false,
     min: 0,
     max: 100,
@@ -217,25 +217,25 @@ function  UNSDG_simple_init (errors, rows) {
       UNSDG_SIMPLE.selS = ui.value / 100;
       updateGoals();
       updateCountries();
-      // $('.section#section4 #right-side #main-text #mt-ind-pct').html(ui.value + '%');
+      // $('.section#section4 #left-side #main-text #mt-ind-pct').html(ui.value + '%');
     },
     slide: function( event, ui ) {
-      $(".section#section4 #left-side #sparsity .value").html(ui.value + "% - " + findRangeLabel(ui.value))
+      $(".section#section4 #right-side #sparsity .value").html(ui.value + "% - " + findRangeLabel(ui.value))
     }
   });
   
-  var value = $(".section#section4 #left-side #sparsity .control").slider('value');
-  $(".section#section4 #left-side #sparsity .value").html(value + "% - " + findRangeLabel(value));
+  var value = $(".section#section4 #right-side #sparsity .control").slider('value');
+  $(".section#section4 #right-side #sparsity .value").html(value + "% - " + findRangeLabel(value));
   
   // GOAL FILTER
   range(0,16).forEach(d => {  
-    $(".section#section4 #left-side #goal .control").append(`<div id="lvl${d}" class="item lvl" data-sdg-num="${d}"></div>`); // sdg sparsity level
-    $(".section#section4 #left-side #goal .control").append(`<div id="sdg${d}" class="item sdg-img" data-sdg-num="${d}"></div>`);
-    //$(".section#section4 #left-side #goal .control " +  `#sdg${d}`).css("background-image",`url(img/SDG/sdg-icon-goal-${d<9?'0'+(d+1):(d+1)}.png)`);
-    $(".section#section4 #left-side #goal .control " +  `#sdg${d}`).css("background-image",`url(img/SDG/SDG${d+1}.svg)`);
-    $(".section#section4 #left-side #goal .control " +  `#sdg${d}` + ", .section#section4 #left-side #goal .control " +  `#lvl${d}`)
+    $(".section#section4 #right-side #goal .control").append(`<div id="lvl${d}" class="item lvl" data-sdg-num="${d}"></div>`); // sdg sparsity level
+    $(".section#section4 #right-side #goal .control").append(`<div id="sdg${d}" class="item sdg-img" data-sdg-num="${d}"></div>`);
+    //$(".section#section4 #right-side #goal .control " +  `#sdg${d}`).css("background-image",`url(img/SDG/sdg-icon-goal-${d<9?'0'+(d+1):(d+1)}.png)`);
+    $(".section#section4 #right-side #goal .control " +  `#sdg${d}`).css("background-image",`url(img/SDG/SDG${d+1}.svg)`);
+    $(".section#section4 #right-side #goal .control " +  `#sdg${d}` + ", .section#section4 #right-side #goal .control " +  `#lvl${d}`)
       .css("grid-area",`${parseInt((d/5))+1}/${(d%5)+1}`);
-    // $(".section#section4 #left-side #goal .control " +  `#lvl${d}`).css("height", `calc(65px * ${Math.random()})`);
+    // $(".section#section4 #right-side #goal .control " +  `#lvl${d}`).css("height", `calc(65px * ${Math.random()})`);
     });
   
   $(".sdg-img").click(d => {
@@ -245,82 +245,82 @@ function  UNSDG_simple_init (errors, rows) {
     $(d.target).parent().children(`*[data-sdg-num="${num}"]`).css("border-color", "black");
     $(d.target).parent().children(`.lvl[data-sdg-num="${num}"]`).css("background-color", "black");
     
-    $(".section#section4 #left-side #goal .value").html((num + 1) + "&middot;" + sdgLabels[num])
-    $(".section#section4 #left-side #goal .default").addClass('modified');
-    $('.section#section4 #right-side #main-text #mt-goal').html(sdgLabels[num]);
+    $(".section#section4 #right-side #goal .value").html((num + 1) + "&middot;" + sdgLabels[num])
+    $(".section#section4 #right-side #goal .default").addClass('modified');
+    $('.section#section4 #left-side #main-text #mt-goal').html(sdgLabels[num]);
     
     console.log(num)
     var indLen = [...new Set(UNSDG_SIMPLE.ap.indsByGoal[num + 1].map(d => d.split('?')[0]))].length
     
-    $('.section#section4 #right-side #main-text #mt-ind-num').html(indLen);
+    $('.section#section4 #left-side #main-text #mt-ind-num').html(indLen);
     updateCountries();
     
-    $(".section#section4 #left-side #goal .default.modified").click(d => {
+    $(".section#section4 #right-side #goal .default.modified").click(d => {
       UNSDG_SIMPLE.selG = range(1,17);
-      $(".section#section4 #left-side #goal .default").removeClass('modified');
-      $(".section#section4 #left-side #goal .value").html('ALL');
-      $(".section#section4 #left-side #goal .control").children().css("border-color", "").css("background-color", "");
-      $('.section#section4 #right-side #main-text #mt-goal').html("THE WHOLE SET");
-      $('.section#section4 #right-side #main-text #mt-ind-num').html("303");
+      $(".section#section4 #right-side #goal .default").removeClass('modified');
+      $(".section#section4 #right-side #goal .value").html('All');
+      $(".section#section4 #right-side #goal .control").children().css("border-color", "").css("background-color", "");
+      $('.section#section4 #left-side #main-text #mt-goal').html("THE WHOLE SET");
+      $('.section#section4 #left-side #main-text #mt-ind-num').html("303");
       updateCountries();
       })
       
     })
     
-  $(".section#section4 #left-side #goal .control .item").css("opacity",".6");
+  $(".section#section4 #right-side #goal .control .item").css("opacity",".6");
   
   // COUNTRY FILTER
   // add text till P gives me the svg
   sahelNames.forEach (d => {
-    //$(".section#section4 #left-side #country .control").append(`<div id="${d}"class="country">${d}</div>`);
+    //$(".section#section4 #right-side #country .control").append(`<div id="${d}"class="country">${d}</div>`);
     })
   
-  $('.section#section4 #left-side #country .control #Layer_1 title').remove(); // remove title  
+  $('.section#section4 #right-side #country .control #Layer_1 title').remove(); // remove title  
   var sahelNamesVector = [7,5,9,3,4,2,1,8,0,6];
-  $('.section#section4 #left-side #country .control #Layer_1 polygon').each((i,e) => { // add country name
+  $('.section#section4 #right-side #country .control #Layer_1 polygon').each((i,e) => { // add country name
     $(e).attr("data-name", sahelNames[sahelNamesVector[i]])
     // $(e).css('fill', 'hsl(0, 0%, ' + Math.random() * 100 + '%)')
     })
   
-  $('.section#section4 #left-side #country .control #Layer_1 polygon').click(d => {
+  $('.section#section4 #right-side #country .control #Layer_1 polygon').click(d => {
     var c = $(d.target).data("name");
     UNSDG_SIMPLE.selC = [c];
     
     $(d.target).siblings().css("stroke", "");
     $(d.target).css("stroke", "black");
-    $(".section#section4 #left-side #country .value").html(c);
-    $(".section#section4 #left-side #country .default").addClass('modified');
-    $('.section#section4 #right-side #main-text #mt-loc-pre').html("");
-    $('.section#section4 #right-side #main-text #mt-loc').html(c);
-    d3.select(`.section#section4 #left-side #country .control #Layer_1 polygon[data-name="${c}"]`).moveToFront();  
+    $(".section#section4 #right-side #country .value").html(c);
+    $(".section#section4 #right-side #country .default").addClass('modified');
+    $('.section#section4 #left-side #main-text #mt-loc-pre').html("");
+    $('.section#section4 #left-side #main-text #mt-loc').html(c);
+    d3.select(`.section#section4 #right-side #country .control #Layer_1 polygon[data-name="${c}"]`).moveToFront();  
     updateGoals();
     })
     
-  $(".section#section4 #left-side #country .default").click(d => {
+  $(".section#section4 #right-side #country .default").click(d => {
     UNSDG_SIMPLE.selC = sahelNames;
-    $(".section#section4 #left-side #country .default").removeClass('modified');
-    $(".section#section4 #left-side #country .value").html("ALL");
-    $(".section#section4 #left-side #country .control polygon").css("stroke", "");
-    $('.section#section4 #right-side #main-text #mt-loc-pre').html("the");
-    $('.section#section4 #right-side #main-text #mt-loc').html("Sahel Region");
+    $(".section#section4 #right-side #country .default").removeClass('modified');
+    $(".section#section4 #right-side #country .value").html("All");
+    $(".section#section4 #right-side #country .control polygon").css("stroke", "");
+    $('.section#section4 #left-side #main-text #mt-loc-pre').html("the");
+    $('.section#section4 #left-side #main-text #mt-loc').html("Sahel Region");
     
     updateGoals();
     })  
     
-  //~ $(".section#section4 #left-side #country .control").children().click(d => {
+  //~ $(".section#section4 #right-side #country .control").children().click(d => {
     //~ var c = $(d.target).attr("id");
     //~ UNSDG_SIMPLE.selC = [c];
     
     //~ $(d.target).css("color", "blue");
     //~ $(d.target).siblings().css("color", "");
-    //~ $(".section#section4 #left-side #country .value").html(c);
-    //~ $(".section#section4 #left-side #country .default").addClass('modified');
+    //~ $(".section#section4 #right-side #country .value").html(c);
+    //~ $(".section#section4 #right-side #country .default").addClass('modified');
     
-    //~ $(".section#section4 #left-side #country .default.modified").click(d => {
+    //~ $(".section#section4 #right-side #country .default.modified").click(d => {
       //~ UNSDG_SIMPLE.selC = sahelNames;
-      //~ $(".section#section4 #left-side #country .default").removeClass('modified');
-      //~ $(".section#section4 #left-side #country .value").html("ALL");
-      //~ $(".section#section4 #left-side #country .control").children().css("color", "");
+      //~ $(".section#section4 #right-side #country .default").removeClass('modified');
+      //~ $(".section#section4 #right-side #country .value").html("ALL");
+      //~ $(".section#section4 #right-side #country .control").children().css("color", "");
       //~ updateGoals();
       //~ })
       
@@ -329,7 +329,7 @@ function  UNSDG_simple_init (errors, rows) {
   
   // YEAR FILTER
   var yMin = 2010, yMax = 2019;
-  $( ".section#section4 #left-side #year .control" ).slider({
+  $( ".section#section4 #right-side #year .control" ).slider({
       range: true,
       min: yMin,
       max: yMax,
@@ -339,17 +339,17 @@ function  UNSDG_simple_init (errors, rows) {
         UNSDG_SIMPLE.selY = range(ui.values[0], ui.values[1]);
         updateGoals();
         updateCountries();
-        $('.section#section4 #right-side #main-text #mt-year').html(ui.values[0] + "-" + ui.values[1]);
+        $('.section#section4 #left-side #main-text #mt-year').html(ui.values[0] + "-" + ui.values[1]);
       },
       slide: function( event, ui ) {
-        $(".section#section4 #left-side #year .value").html(ui.values[0] + "-" + ui.values[1]);
+        $(".section#section4 #right-side #year .value").html(ui.values[0] + "-" + ui.values[1]);
         // inputChange('TimePeriod');
       }
     });
-    $(".section#section4 #left-side #year .value").html(yMin + "-" + yMax);
+    $(".section#section4 #right-side #year .value").html(yMin + "-" + yMax);
   
-  $('.section#section4 #right-side #grid-container').on("mouseenter", d=>UNSDG.bodyScroll=false);
-  $('.section#section4 #right-side #grid-container').on("mouseleave", d=>UNSDG.bodyScroll=true);
+  $('.section#section4 #left-side #grid-container').on("mouseenter", d=>UNSDG.bodyScroll=false);
+  $('.section#section4 #left-side #grid-container').on("mouseleave", d=>UNSDG.bodyScroll=true);
   
   // init vis  
   updateGoals();
