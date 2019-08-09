@@ -43,6 +43,7 @@
 
 .section#section4 #main-graphs #head, .section#section4 #main-graphs .mg-item-label {
     margin: auto 0px;
+    font-size: 1.1rem;
 }
 
 .section#section4 #main-graphs #head, .section#section4 #main-graphs path.mg-main-area {
@@ -66,6 +67,7 @@
 }
 
 .section#section4 #main-graphs #head #ind {
+    font-size: 1.1rem;
 }
 
 .section#section4 #main-graphs #head #ind-num {
@@ -104,6 +106,7 @@
   font-weight: bold;
   display: inline-block;
   float: right;
+  font-family: "source sans pro";
 }
 
 .section#section4 #right-side .default {
